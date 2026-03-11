@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单词/词组复习工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            /* 蓝色渐变背景 */
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 50%, #90caf9 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .container {
+            /* 磨砂玻璃效果 */
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 135, 241, 0.15);
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #1976d2;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .header p {
+            color: #4299e1;
+            font-size: 18px;
+            opacity: 0.8;
+        }
+
+        .word-card {
+            /* 卡片渐变边框 */
+            position: relative;
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            margin-bottom: 40px;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .word-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #1976d2, #64b5f6) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .word {
+            font-size: 36px;
+            font-weight: 600;
+            color: #0d47a1;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .meaning {
+            font-size: 26px;
+            color: #1976d2;
+            min-height: 50px;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            font-weight: 400;
+        }
+
+        .meaning.show {
+            opacity: 1;
+        }
+
+        .controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            color: white; /* 统一按钮文字为白色 */
+        }
+
+        /* 按钮hover动效 */
+        button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        button:hover::after {
+            left: 100%;
+        }
+
+        /* 三个按钮统一蓝色系，从深到浅渐变 */
+        #toggleMeaning {
+            /* 最深的蓝色渐变 */
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+        }
+
+        #toggleMeaning:hover {
+            background: linear-gradient(135deg, #0a3d8c 0%, #1058a8 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(13, 71, 161, 0.3);
+        }
+
+        #nextWord {
+            /* 中等深度蓝色渐变 */
+            background: linear-gradient(135deg, #1976d2 0%, #2196f3 100%);
+        }
+
+        #nextWord:hover {
+            background: linear-gradient(135deg, #1565c0 0%, #1976d2 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+        }
+
+        #mastered {
+            /* 最浅的蓝色渐变 */
+            background: linear-gradient(135deg, #42a5f5 0%, #64b5f6 100%);
+        }
+
+        #mastered:hover {
+            background: linear-gradient(135deg, #3897ea 0%, #57a7e8 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(66, 165, 245, 0.3);
+        }
+
+        .stats {
+            text-align: center;
+            background: rgba(207, 226, 250, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            color: #0d47a1;
+            font-size: 19px;
+            font-weight: 500;
+        }
+
+        .stats span {
+            color: #1976d2;
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 50px;
+            color: #1976d2;
+            font-size: 15px;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            .header h1 {
+                font-size: 26px;
+            }
+            .word {
+                font-size: 30px;
+            }
+            .meaning {
+                font-size: 22px;
+            }
+            button {
+                padding: 12px 24px;
+                font-size: 15px;
+            }
+            .word-card {
+                padding: 30px 20px;
+                min-height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>单词/词组复习工具</h1>
+            <p>点击按钮显示释义，标记已掌握，随机切换下一个</p>
+        </div>
+
+        <div class="word-card">
+            <div class="word" id="currentWord"></div>
+            <div class="meaning" id="currentMeaning"></div>
+        </div>
+
+        <div class="controls">
+            <button id="toggleMeaning">显示/隐藏释义</button>
+            <button id="nextWord">下一个单词</button>
+            <button id="mastered">标记为已掌握</button>
+        </div>
+
+        <div class="stats">
+            剩余待复习: <span id="remainingCount">0</span> | 已掌握: <span id="masteredCount">0</span>
+        </div>
+    </div>
+
+    <div class="footer">
+        自定义单词库请修改代码中的 words 数组
+    </div>
+
+    <script>
+        // ********** 核心配置：替换成你要复习的单词/词组 **********
+        const wordList = [
+            { word: "transaction", meaning: "n.1交易,业务2(业务等的)办理,执行 搭配：transaction volume 交易量；transaction fee 交易手续费；transaction cost 交易成本" },
+            { word: "reactionary", meaning: "a.反动的 n.反动分子" },
+            { word: "enact", meaning: "vt.1扮演,演出2将...制定成法律" },
+            { word: "actual", meaning: "a.1实际的,真实的2(the ~ sth.)真正的某事物" },
+            { word: "actuality", meaning: "n.1(pl)实际情况,真实情况2真实,实际" },
+            { word: "agenda", meaning: "n.1议事日程2(政府、机构等的)日程表3(政治)议题" },
+            { word: "agitate", meaning: "vi. (for, against)鼓动,煽动 vt.1使焦虑,使不安2[术语]搅动(液体)" },
+            { word: "antagonism", meaning: "n.1(人或团体之间的)对抗2(对主张、计划等的)反对 近义：opposition/confrontation" },
+            { word: "select", meaning: "vt.(经过认真思考后)选择,挑选 a.挑选出的" },
+            { word: "delegate", meaning: "n.代表,代表团成员 v.1选举(或委派)...为代表2授权,把...委托给 近义：representative" },
+            { word: "delegation", meaning: "n.代表团（一员为a delegate）" },
+            { word: "elegant", meaning: "a.1简练的,简洁的2优美的,文雅的" },
+            { word: "eligible", meaning: "a.1有资格的2(尤指婚姻等)合适的,合意的 搭配：be eligible for 有资格做" },
+            { word: "neglectful", meaning: "a.疏忽的,不注意的" },
+            { word: "intellect", meaning: "n.1智力,理解力2才智非凡的人" },
+            { word: "intellectual", meaning: "a.1智力的2善于思考的 n.知识分子 搭配：intellectual property 知识产权" },
+            { word: "intelligence", meaning: "n.1智力,智慧2情报3情报人员" },
+            { word: "intelligible", meaning: "a.(言语、文章等)可理解的,易懂的 近义：accessible/comprehensible" },
+            { word: "assault", meaning: "n./vt.1攻击,袭击2抨击,严厉批评 搭配：an assault on 对…的攻击" },
+            { word: "insult", meaning: "v.侮辱;辱骂;损害 n.侮辱;凌辱;无礼" },
+            { word: "census", meaning: "n. (pl. censuses) 1人口普查2(官方进行的)统计,调查" },
+            { word: "coalition", meaning: "n.1(政党、个人或国家间的)联盟2结盟,联合 近义：alliance/union" },
+            { word: "intricate", meaning: "a.错综复杂的 近义：complicated/sophisticated" },
+            { word: "obsess", meaning: "vi.(about)唠叨,牵挂 vt.使着迷,使迷恋" },
+            { word: "appease", meaning: "vt.平息,抚慰" },
+            { word: "curfew", meaning: "n.宵禁" },
+            { word: "decimal", meaning: "n.小数 a.十进位的,小数的" },
+            { word: "eclipse", meaning: "n.1日食,月食2(sing.)(权力或名望的)黯然失色 vt.1出现(日食或月食)2使黯然失色" },
+            { word: "latitude", meaning: "n.1纬度2(pl)纬度地区" },
+            { word: "tender", meaning: "a.1娇嫩的,脆弱的2温柔的3一触即痛的" },
+            { word: "attend", meaning: "vt.1出席,参加2经常去,定期去 vt.看护,照料(病人)" },
+            { word: "attendant", meaning: "n.1服务员2侍者,随从 a.伴随的 搭配：flight attendant 空乘" },
+            { word: "contend", meaning: "vi.竞争,争夺 vt.声称,主张 搭配：contend for sth 争夺某物；contend with sb 与某人抗衡" },
+            { word: "contention", meaning: "n.1争辩,争论2论点,主张" },
+            { word: "extension", meaning: "n.1扩大,延伸2[电话]分机3(常sing.)延期" },
+            { word: "extensive", meaning: "a.1大规模的[侧重广]2广泛的,全面的 搭配：extensive reading 泛读" },
+            { word: "intensive", meaning: "a.1加强的,密集的2集约的 搭配：intensive reading 精读" },
+            { word: "intend", meaning: "v.1想要,打算2(be-ed for)为…而设计的3意指 搭配：intend to do sth 打算做某事" },
+            { word: "intent", meaning: "n.1[法律]意图,目的2(犯罪)意图 a.专注的 搭配：be intent on (doing) sth 执意于做某事" },
+            { word: "expectancy", meaning: "n.期待,盼望 搭配：life expectancy 预期寿命" },
+            { word: "aspect", meaning: "n.1[事物]方面2[建筑物]朝向3[人]面貌,外表" },
+            { word: "inspect", meaning: "vt.1仔细检查,检验2检阅" },
+            { word: "perspective", meaning: "n.1(思考问题的)视角,观点2远景,景观3透视(画)法" },
+            { word: "prospective", meaning: "a.1潜在的,有希望的2很可能发生的" },
+            { word: "retrospect", meaning: "n.回顾,追忆 搭配：in retrospect 回想起来" },
+            { word: "spectacle", meaning: "n.1(pl)眼镜2壮观的景象3(大规模)演出" },
+            { word: "spectacular", meaning: "a.1壮观的,令人惊叹的2惊人的 n.壮观的演出,盛况" },
+            { word: "spectator", meaning: "n.观众,旁观者 近义：audience" },
+            { word: "spectrum", meaning: "n.1光谱2幅度" },
+            { word: "suspect", meaning: "vt.1怀疑2猜想,推测 n.嫌疑犯 a.可疑的 搭配：suspect sb. of doing sth 怀疑某人做过某事" },
+            { word: "speculate", meaning: "v.(about/on/that)推测,推断 vi. (in/on)投机 派：speculator n.投机者" },
+            { word: "speculation", meaning: "n.1推断,推测2投机生意" },
+            { word: "conspicuous", meaning: "a.1显眼的,明显的2不寻常的,引人注目的" },
+            { word: "suspicion", meaning: "n.1怀疑,嫌疑2(a ~of)一点儿,少量 搭配：under suspicion 被怀疑" },
+            { word: "suspicious", meaning: "a.1猜疑的,疑心的2可疑的 搭配：be suspicious of 对…有疑心" },
+            { word: "despise", meaning: "vt.鄙视,看不起 近义：look down upon/contempt" },
+            { word: "symposium", meaning: "n.1讨论会,专题报告会2专题论文集" },
+            { word: "venerable", meaning: "a.(由于年龄、经验而)德高望重的,可敬的" },
+            { word: "contemplate", meaning: "vt.1打算,考虑2凝视 v.深思" },
+            { word: "atlas", meaning: "n.地图集,地图册" },
+            { word: "sabotage", meaning: "n./vt.蓄意破坏" },
+            { word: "arena", meaning: "n.1圆形运动场2竞争舞台,活动场所" },
+            { word: "mortgage", meaning: "n.按揭,抵押借款 vt.抵押" },
+            { word: "precedent", meaning: "n.1可援引的先例2惯例" },
+            { word: "exceedingly", meaning: "ad.极其,非常 辨：exceedingly=very much; excessively=much too" },
+            { word: "accession", meaning: "n.1同意2就职" },
+            { word: "concede", meaning: "vt.(勉强)同意 v.承认(某事属实)" },
+            { word: "concession", meaning: "n.1让步,妥协2承认,认可3特许权" },
+            { word: "recede", meaning: "vi.1[景物、声音]渐渐远去2[问题、感情等]逐渐减弱3[头发]从前额往后脱落" },
+            { word: "recession", meaning: "n.(经济的)衰退,萧条" },
+            { word: "accessory", meaning: "n.1(常pl)附件,配件2(常pl)装饰品3同谋 搭配：an accessory to …的帮凶" },
+            { word: "predecessor", meaning: "n.1前任,前辈2(被替代的)原有事物,前身" },
+            { word: "sensible", meaning: "a.1明智的,有判断力的2明显的 搭配：be sensible of 可觉察出…" },
+            { word: "sensitive", meaning: "a.1过敏的,敏感的2(感情)敏感的 派：sensitivity n.敏感" },
+            { word: "sensual", meaning: "a.1感官的,肉体的2喜欢感官享受的" },
+            { word: "sensuous", meaning: "a.1刺激感官的,给人以快感的2性感的" },
+            { word: "sensation", meaning: "n.1感觉,知觉2(感官的)感觉能力3轰动,引起轰动的事件" },
+            { word: "sensational", meaning: "a.1引起哗然的2耸人听闻的(贬义)3绝妙的" },
+            { word: "sentiment", meaning: "n.1感想,意见,观点2多愁善感 搭配：market sentiment 市场情绪" },
+            { word: "consensus", meaning: "n.(sing.)一致同意,共同意见 搭配：reach a consensus 达成共识" },
+            { word: "consent", meaning: "vi.(to)/n.同意,赞成,准许 搭配：by common consent 经一致同意" },
+            { word: "dissent", meaning: "vi.(from)持异议,不同意 n.异议,意见分歧" },
+            { word: "resent", meaning: "vt.对…表示愤恨,怨恨 搭配：resent (sb.) doing sth 厌恶(某人)做某事" },
+            { word: "resentment", meaning: "n.愤恨,怨恨" },
+            { word: "scent", meaning: "vt.1察觉2嗅到 n.1香味2气味,臭迹3香水" },
+            { word: "nonsense", meaning: "n.1废话,胡说2胡闹3毫无意义的语言或文章" },
+            { word: "condolence", meaning: "n.(常pl)(尤指对逝者的)吊唁,追悼" },
+            { word: "converge", meaning: "vi.1汇合,集中2(人群)聚集3(观点)趋同" },
+            { word: "configuration", meaning: "n.1布局2[术语](计算机设备的)配置" },
+            { word: "discrete", meaning: "a.分离的,不连续的 辨：discreet 谨慎的" },
+            { word: "discrepancy", meaning: "n.差异,不符合(之处)" },
+            { word: "distort", meaning: "vt.歪曲,曲解 v.(使)失真,使变形" },
+            { word: "elapse", meaning: "vi.(时间)过去,消逝" },
+            { word: "excerpt", meaning: "n./vt.摘录,节选" },
+            { word: "interrogation", meaning: "n.1讯问,质问2疑问句3问号" },
+            { word: "intermittent", meaning: "a.间歇的" },
+            { word: "monarchy", meaning: "n.1君主制,君主政体2君主国" },
+            { word: "monopoly", meaning: "n.1垄断,专卖2(sing)垄断品3垄断者 派：monopolize v.垄断" },
+            { word: "retrieve", meaning: "vt.1找回,取回2挽回,补救3[术语]检索 搭配：retrieve information 检索信息" },
+            { word: "revive", meaning: "v.(使)复苏,(使)恢复精力 vt.1使复兴2重新上演 派：revival n.复苏" },
+            { word: "diction", meaning: "n.1[文学]措辞,用词2[讲或说话]发音方式,咬字" },
+            { word: "verdict", meaning: "n.1(经过考虑后的)结论,意见2[法律]裁定 近义：conclusion/ruling" },
+            { word: "index", meaning: "n.1(pl. indices)标志,指标2(pl. indexes/indices)指数3(pl. indexes)索引 vt.1指示2为…编索引" },
+            { word: "resistor", meaning: "n.电阻器" },
+            { word: "transistor", meaning: "n.1(电子)晶体管2晶体管收音机" },
+            { word: "vulnerable", meaning: "a.1易受伤的,脆弱的2易受攻击的 搭配：be vulnerable to 易受…影响" },
+            { word: "formidable", meaning: "a.1可怕的2难以应付的,难以战胜的 近义：powerful/terrible" },
+            { word: "culminate", meaning: "vi. (in/with)以…告终,最终达到 搭配：culminate in success 终获成功" },
+            { word: "saturate", meaning: "vt.1使湿透,浸透2使充满,使饱和 搭配：be saturated with 充满" },
+            { word: "lubricate", meaning: "vt.1使润滑,给…加润滑油2使顺利进行" },
+            { word: "frantic", meaning: "a.1发狂(似)的,发疯的2紧张忙乱的" },
+            { word: "imperative", meaning: "a.1紧急的,极重要的2[术语](动词)祈使的 n.紧急的事" },
+            { word: "gadget", meaning: "n.小巧的机器或工具,精巧装置 近义：device" },
+            { word: "pamphlet", meaning: "n.小册子" },
+            { word: "captive", meaning: "n.俘虏 a.被监禁的" },
+            { word: "capacity", meaning: "n. 1能力,才能2容量,容纳能力3职位" },
+            { word: "concur", meaning: "vi. 1同时发生2同意,观点一致" },
+            { word: "concurrent", meaning: "a.1同时发生的2并存的3同意的" },
+            { word: "excursion", meaning: "n.(尤指集体度假的)短途旅行" },
+            { word: "incur", meaning: "vt1招致,引起2引致(成本、债务等)" },
+            { word: "abrupt", meaning: "a.1[变化等]突然的,意外的2[举止、言谈等]唐突的" },
+            { word: "corrupt", meaning: "vt.1使堕落2侵蚀,破坏 a.1堕落的2腐败的" },
+            { word: "disrupt", meaning: "vt.使混乱,扰乱" },
+            { word: "erupt", meaning: "vi.1[火山、岩浆等]喷发2[战争、问题等]爆发" },
+            { word: "rupture", meaning: "n.1破裂,裂开2(关系的)决裂 v.(使)破裂" },
+            { word: "expend", meaning: "vt.花费,消费,消耗 搭配：expend…in/on (doing) sth 花费…做某事" },
+            { word: "dispense", meaning: "vi.(with)摒弃,不用 vt.1分配,分发2配(药),发(药)" },
+            { word: "pendulum", meaning: "n.1摆,钟摆2[喻]摇摆不定的事态" },
+            { word: "perpendicular", meaning: "a.垂直的 n.垂线 辨：horizontal 水平的" },
+            { word: "pending", meaning: "a.1悬而未决的2即将发生的 prep.在等待…之际" },
+            { word: "suspend", meaning: "vt.1悬,挂,吊2暂停,中止3使暂时停学/停职 搭配：suspend business 暂停营业" },
+            { word: "suspension", meaning: "n.1(汽车)悬架2暂停,中止3暂时停学/停职" },
+            { word: "ponder", meaning: "v.仔细考虑,思索 搭配：ponder on/upon/over 深思" },
+            { word: "compulsion", meaning: "n. 1(sing.)强迫,强制2(难以克制的)冲动" },
+            { word: "compulsory", meaning: "a.义务的,强制的 搭配：compulsory education 义务教育；compulsory course 必修课" },
+            { word: "expel", meaning: "vt.1把…除名,开除2排出(空气、水等)3驱逐,赶走" },
+            { word: "propel", meaning: "vt.推进,推动 派：propeller n.螺旋桨" },
+            { word: "repel", meaning: "vt.1击退,驱逐2[术语]排斥3使厌恶 反义：attract 吸引" },
+            { word: "pulse", meaning: "n.1(常sing.)脉搏2节奏,律动3脉冲 vi.搏动,跳动" },
+            { word: "impulse", meaning: "n.1冲动,一时的念头2推动力3[术语]脉冲 搭配：on impulse 一时冲动；impulse buying 冲动购物" },
+            { word: "hoist", meaning: "vt.(用绳索等)升起,吊起" },
+            { word: "hurl", meaning: "v.1丢,猛投2大声叫骂 搭配：hurl yourself at sb 向某人猛扑过去" },
+            { word: "heave", meaning: "v.(用力)举,拉 vt.(用力)扔,抛 vi.1(剧烈)起伏2恶心 n.1猛力的推/举2起伏" },
+            { word: "moan", meaning: "v.呻吟,呜咽 n.呻吟声,呜咽声 搭配：have a moan about sth 抱怨某事" },
+            { word: "murmur", meaning: "v./n.小声说(话),低语；(微风/水流)低沉声" },
+            { word: "mutter", meaning: "v./n.咕哝,悄声说；小声抱怨 搭配：mutter about 咕哝/抱怨" },
+            { word: "stumble", meaning: "vi.1绊脚2踉跄3结巴 搭配：stumble on 偶然发现" },
+            { word: "stammer", meaning: "v.口吃,结结巴巴地说 n.(常sing.)结巴 搭配：stammer out 结结巴巴地说出" },
+            { word: "conservation", meaning: "n.1(自然资源的)保存,保护2保持,节约 搭配：soil conservation 土壤保持" },
+            { word: "conservative", meaning: "a.保守的,守旧的 n.保守的人,保守主义者" },
+            { word: "preserve", meaning: "vt.1保护,维持2保存,腌制 n.1果酱,腌菜2禁猎地" },
+            { word: "reserve", meaning: "v.1储备,保存2预订 n.1储藏,保留2储备物3缄默4(the -s)预备役部队5(英)野生动物保护区" },
+            { word: "reservoir", meaning: "n.1(大量的)储藏,汇集2水库,蓄水池" },
+            { word: "observatory", meaning: "n.天文台,气象台" },
+            { word: "compose", meaning: "vt.1组成,构成2使平静 v.创作(乐曲等) 搭配：be composed of 由…组成" },
+            { word: "composer", meaning: "n.(尤指乐曲的)创作者,作曲者" },
+            { word: "composite", meaning: "a.合成的,复合的 n.合成物,混合物" },
+            { word: "composition", meaning: "n.1构成,成分2作文3作品4创作5(绘画的)构图" },
+            { word: "deposit", meaning: "vt.1放置,放下2使沉积3储蓄,存钱 n.1存款2押金3沉积物 搭配：deposit money 存钱；deposit a bag 存包" },
+            { word: "dispose", meaning: "v.1安排,编排2(~sb. to)使倾向于3(of)处理,舍弃 谚语：Man proposes; God disposes.谋事在人，成事在天" },
+            { word: "disposal", meaning: "n.1丢掉2变卖3安排 搭配：at sb.'s disposal 任某人处理" },
+            { word: "disposition", meaning: "n.1安排,布置2倾向,意向3性情,性格" },
+            { word: "expose", meaning: "vt.1暴露2揭露3使(照片)曝光4陈列5使接触 搭配：expose …to … 使…暴露于/接触到…" },
+            { word: "exposure", meaning: "n.1显露,暴露2揭露3报道4(照片的)曝光时间 搭配：exposure to 暴露于…" },
+            { word: "exposition", meaning: "n.1展览会,博览会2阐述" },
+            { word: "impose", meaning: "vt.1强制实行2增加(负担)3强加于 搭配：impose a fine on sb 对某人处以罚金；impose sth on sb 把某物强加于某人" },
+            { word: "pose", meaning: "vt.1提出(问题)2造成,引起 vi.1摆姿势2假装 n.姿势 搭配：strike a pose 忸怩作态" },
+            { word: "posture", meaning: "n.1(身体的)姿势2(sing.)立场,态度 vi.故作姿态" },
+            { word: "preposition", meaning: "n.介词(缩写prep.)" },
+            { word: "propose", meaning: "vt.1提议,提出2提名3打算 vi.求婚 搭配：propose new idea 提出新观念" },
+            { word: "proposal", meaning: "n.1提议,建议2求婚" },
+            { word: "proposition", meaning: "n.1论点,主张2建议,提议3[术语]命题" },
+            { word: "component", meaning: "n.(机器、系统的)成分,零件 a.组成的,构成的" },
+            { word: "opponent", meaning: "n.1敌手,对手2反对者" },
+            { word: "postpone", meaning: "vt.推迟,延期" },
+            { word: "compound", meaning: "n.1[术语]化合物2复合物 a.复合的 vt.1使合成2使加重,使恶化" }
+        ];
+
+        // 状态管理
+        let remainingWords = [...wordList]; // 待复习的单词
+        let masteredWords = []; // 已掌握的单词
+        let currentIndex = -1; // 当前显示的单词索引
+        let currentWordObj = null; // 当前显示的单词对象
+
+        // DOM 元素
+        const currentWordEl = document.getElementById('currentWord');
+        const currentMeaningEl = document.getElementById('currentMeaning');
+        const toggleMeaningBtn = document.getElementById('toggleMeaning');
+        const nextWordBtn = document.getElementById('nextWord');
+        const masteredBtn = document.getElementById('mastered');
+        const remainingCountEl = document.getElementById('remainingCount');
+        const masteredCountEl = document.getElementById('masteredCount');
+
+        // 初始化：显示第一个单词
+        function init() {
+            updateStats();
+            showRandomWord();
+        }
+
+        // 显示随机单词（强制隐藏释义）
+        function showRandomWord() {
+            if (remainingWords.length === 0) {
+                currentWordEl.textContent = "恭喜！所有单词已掌握";
+                currentMeaningEl.textContent = "";
+                currentMeaningEl.classList.remove('show'); // 确保清空时也隐藏
+                return;
+            }
+
+            // 随机选一个未复习的单词
+            currentIndex = Math.floor(Math.random() * remainingWords.length);
+            currentWordObj = remainingWords[currentIndex];
+            
+            // 显示单词，强制移除show类隐藏释义
+            currentWordEl.textContent = currentWordObj.word;
+            currentMeaningEl.textContent = currentWordObj.meaning;
+            currentMeaningEl.classList.remove('show'); // 核心修复：切换单词时强制隐藏释义
+        }
+
+        // 切换释义显示/隐藏
+        function toggleMeaning() {
+            currentMeaningEl.classList.toggle('show');
+        }
+
+        // 标记为已掌握
+        function markAsMastered() {
+            if (remainingWords.length === 0 || currentIndex === -1) return;
+            
+            // 移到已掌握列表
+            const masteredWord = remainingWords.splice(currentIndex, 1)[0];
+            masteredWords.push(masteredWord);
+            
+            // 更新统计，显示下一个（自动隐藏释义）
+            updateStats();
+            showRandomWord();
+        }
+
+        // 更新统计数据
+        function updateStats() {
+            remainingCountEl.textContent = remainingWords.length;
+            masteredCountEl.textContent = masteredWords.length;
+        }
+
+        // 绑定事件
+        toggleMeaningBtn.addEventListener('click', toggleMeaning);
+        nextWordBtn.addEventListener('click', showRandomWord);
+        masteredBtn.addEventListener('click', markAsMastered);
+
+        // 页面加载完成后初始化
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
