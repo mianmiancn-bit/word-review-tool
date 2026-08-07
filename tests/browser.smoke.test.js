@@ -88,12 +88,26 @@ async function main() {
     console.log("step: per-question directory loaded");
     await page.screenshot({ path: path.join(artifacts, "01-首页.png"), fullPage: true });
     const homeText = await page.locator("body").innerText();
-    assert.match(homeText, /317/);
+    assert.match(homeText, /412/);
     assert.match(homeText, /一次只练一道/);
     assert.match(homeText, /不抽词、不乱序/);
     assert.doesNotMatch(homeText, /我的词表|添加词表|本组数量|按原顺序开始整张/);
     assert.equal(await page.locator("[data-start-section]").count(), 9);
     assert.equal(externalRequests.length, 0, "页面不应请求外部资源");
+
+    assert.equal(await page.locator("#set-select option").count(), 4);
+    assert.equal(await page.locator('#set-select option[value="rail-industry-logistics"]').count(), 1);
+    assert.equal(await page.locator('#set-select option[value="prefix-word-families"]').count(), 1);
+    await page.locator("#set-select").selectOption("rail-industry-logistics");
+    assert.equal(await page.locator("[data-start-section]").count(), 4);
+    const newTopicOrder = await page.evaluate(() => ({
+      expected: window.BUILTIN_WORD_SETS.find((set) => set.id === "rail-industry-logistics").sections.map((section) => section.id),
+      actual: [...document.querySelectorAll("[data-start-section]")].map((button) => button.dataset.startSection)
+    }));
+    assert.deepEqual(newTopicOrder.actual, newTopicOrder.expected, "新增专题的大题必须保持正式词库顺序");
+    await page.locator("#set-select").selectOption("geology");
+    assert.equal(await page.locator("[data-start-section]").count(), 9);
+    console.log("step: four approved topics and new-topic fixed order verified");
 
     await page.getByRole("button", { name: "管理简单词" }).click();
     await page.getByRole("heading", { name: "简单词管理" }).waitFor();
