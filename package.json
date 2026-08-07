@@ -1,0 +1,18 @@
+Exit code: 0
+Wall time: 0.6 seconds
+Output:
+{
+  "name": "word-review-tool",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static ordered vocabulary dictation notebook",
+  "scripts": {
+    "test": "node tests/logic.test.js && node tests/browser.smoke.test.js",
+    "test:logic": "node tests/logic.test.js",
+    "test:browser": "node tests/browser.smoke.test.js"
+  },
+  "devDependencies": {
+    "playwright": "1.62.0"
+  }
+}
+

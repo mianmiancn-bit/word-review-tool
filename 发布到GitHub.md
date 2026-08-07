@@ -1,3 +1,6 @@
+Exit code: 0
+Wall time: 0.5 seconds
+Output:
 # GitHub Pages 发布与维护
 
 本网页没有后台和构建步骤，适合直接从公开仓库发布。
@@ -49,10 +52,11 @@ GitHub 会自动重新发布。发布失败时，到仓库的 `Actions` 页面�
 ## 隐私与公开范围
 
 - GitHub Pages 网页和公开仓库中的 317 条词汇对所有人可见。
-- 默写答案、自定义词表和进度默认只存在访问者自己的浏览器中。
+- 默写答案、进度和“太简单”移出清单只存在访问者自己的浏览器中。
 - 不要把 `话题词汇积累`、原件备份、ETS PDF 或音频复制进这个仓库。
 
 官方说明：
 
 - [配置 GitHub Pages 发布源](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 - [创建 GitHub Pages 网站](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)
+
