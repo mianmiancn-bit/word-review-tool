@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-07T15:08:54.979Z",
+  "updatedAt": "2026-08-07T16:48:30.000Z",
   "wordSets": [
     {
       "id": "geology",
@@ -3951,6 +3951,2461 @@
                 "level": null,
                 "confidence": "unrated"
               }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rail-industry-logistics",
+      "title": "铁路、工业化、生产与商品流通",
+      "order": 3,
+      "count": 45,
+      "sections": [
+        {
+          "id": "rail-industry-logistics-s1",
+          "title": "一、铁路与运输网络",
+          "order": 1,
+          "orderingBasis": "高频具体词 → 网络与地理概念 → 运输专业词。",
+          "items": [
+            {
+              "id": "rail-industry-logistics-s1-001",
+              "prompt": "铁路；铁轨",
+              "answer": "rail",
+              "ipa": "/reɪl/",
+              "partOfSpeech": "n.",
+              "order": 1,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频、具体、单音节。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "cue": "rail_____",
+                "completedForm": "railroads",
+                "relation": "复合词词根"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s1-002",
+              "prompt": "铁路（尤指美式用语）",
+              "answer": "railroad",
+              "ipa": "/ˈreɪlrəʊd/",
+              "partOfSpeech": "n.",
+              "order": 2,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频具体复合词。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "cue": "rail_____",
+                "completedForm": "railroads",
+                "answerSuffix": "roads"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s1-003",
+              "prompt": "路线；线路",
+              "answer": "route",
+              "ipa": "/ruːt/",
+              "partOfSpeech": "n.",
+              "order": 3,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "高频具体词。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s1-004",
+              "prompt": "货物；商品",
+              "answer": "goods",
+              "ipa": "/ɡʊdz/",
+              "partOfSpeech": "n. pl.",
+              "order": 4,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频，但固定使用复数形式。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "cue": "go_____",
+                "completedForm": "goods",
+                "answerSuffix": "ods"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s1-005",
+              "prompt": "运输；运送",
+              "answer": "transport",
+              "ipa": "/ˈtrænspɔːt; trænˈspɔːt/",
+              "partOfSpeech": "n./v.",
+              "order": 5,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频多词性词，名词和动词重音不同。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "As transport costs fell"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s1-006",
+              "prompt": "距离",
+              "answer": "distance",
+              "ipa": "/ˈdɪstəns/",
+              "partOfSpeech": "n.",
+              "order": 6,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频抽象量词。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "across long distances",
+                "contextForm": "distances"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s1-007",
+              "prompt": "网络；网状系统",
+              "answer": "network",
+              "ipa": "/ˈnetwɜːk/",
+              "partOfSpeech": "n.",
+              "order": 7,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见复合词，在交通语境中承担系统含义。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "railroad network"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s1-008",
+              "prompt": "大陆；洲",
+              "answer": "continent",
+              "ipa": "/ˈkɒntɪnənt/",
+              "partOfSpeech": "n.",
+              "order": 8,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见地理词。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "across the continent"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s1-009",
+              "prompt": "货运；货物运输",
+              "answer": "freight",
+              "ipa": "/freɪt/",
+              "partOfSpeech": "n.",
+              "order": 9,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "铁路运输领域常用，但日常频率较低。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s1-010",
+              "prompt": "基础设施",
+              "answer": "infrastructure",
+              "ipa": "/ˈɪnfrəstrʌktʃə(r)/",
+              "partOfSpeech": "n.",
+              "order": 10,
+              "status": "active",
+              "difficulty": {
+                "level": 4,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "多音节抽象专业词。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rail-industry-logistics-s2",
+          "title": "二、市场、供给与流通",
+          "order": 2,
+          "orderingBasis": "日常商业词 → 连接和支持动作 → 商贸与系统整合概念。",
+          "items": [
+            {
+              "id": "rail-industry-logistics-s2-001",
+              "prompt": "市场",
+              "answer": "market",
+              "ipa": "/ˈmɑːkɪt/",
+              "partOfSpeech": "n.",
+              "order": 1,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频具体商业词。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "cue": "mar_____",
+                "completedForm": "markets",
+                "answerSuffix": "kets"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s2-002",
+              "prompt": "供给；供应",
+              "answer": "supply",
+              "ipa": "/səˈplaɪ/",
+              "partOfSpeech": "n./v.",
+              "order": 2,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频多词性商业词。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s2-003",
+              "prompt": "成本；费用",
+              "answer": "cost",
+              "ipa": "/kɒst/",
+              "partOfSpeech": "n.",
+              "order": 3,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频具体商业词。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "transport costs",
+                "contextForm": "costs"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s2-004",
+              "prompt": "公司；商号",
+              "answer": "firm",
+              "ipa": "/fɜːm/",
+              "partOfSpeech": "n.",
+              "order": 4,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见熟词生义；此处不是形容词“牢固的”。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "firms planned",
+                "contextForm": "firms"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s2-005",
+              "prompt": "贸易；交易",
+              "answer": "trade",
+              "ipa": "/treɪd/",
+              "partOfSpeech": "n./v.",
+              "order": 5,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频多词性商业词。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s2-006",
+              "prompt": "需求",
+              "answer": "demand",
+              "ipa": "/dɪˈmɑːnd/",
+              "partOfSpeech": "n.",
+              "order": 6,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见经济学核心词。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s2-007",
+              "prompt": "连接；把……联系起来",
+              "answer": "link",
+              "ipa": "/lɪŋk/",
+              "partOfSpeech": "n./v.",
+              "order": 7,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频多词性词，语境要求动词形式。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "closely linked markets",
+                "contextForm": "linked"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s2-008",
+              "prompt": "支持；促进",
+              "answer": "support",
+              "ipa": "/səˈpɔːt/",
+              "partOfSpeech": "v./n.",
+              "order": 8,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频多词性词，截图考查过去式。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "cue": "supp_____",
+                "completedForm": "supported",
+                "answerSuffix": "orted"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s2-009",
+              "prompt": "商业；贸易",
+              "answer": "commerce",
+              "ipa": "/ˈkɒmɜːs/",
+              "partOfSpeech": "n.",
+              "order": 9,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "较正式的商业抽象词。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s2-010",
+              "prompt": "供应链",
+              "answer": "supply chain",
+              "ipa": "/səˈplaɪ tʃeɪn/",
+              "partOfSpeech": "n. phr.",
+              "order": 10,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "双词固定术语。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s2-011",
+              "prompt": "市场一体化；市场整合",
+              "answer": "market integration",
+              "ipa": "/ˈmɑːkɪt ˌɪntɪˈɡreɪʃən/",
+              "partOfSpeech": "n. phr.",
+              "order": 11,
+              "status": "active",
+              "difficulty": {
+                "level": 4,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "抽象经济史术语，组合负担较高。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "cue": "mar_____ ... integ_____",
+                "completedForms": [
+                  "markets",
+                  "integration"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "rail-industry-logistics-s3",
+          "title": "三、原料、制造与成品",
+          "order": 3,
+          "orderingBasis": "高频实体和动作 → 制造者与过程 → 固定工业短语。",
+          "items": [
+            {
+              "id": "rail-industry-logistics-s3-001",
+              "prompt": "材料；原料",
+              "answer": "material",
+              "ipa": "/məˈtɪəriəl/",
+              "partOfSpeech": "n.",
+              "order": 1,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频熟词；截图难点是只给 mate- 时的检索。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "cue": "mate_____",
+                "completedForm": "materials",
+                "answerSuffix": "rials"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s3-002",
+              "prompt": "产品；制品",
+              "answer": "product",
+              "ipa": "/ˈprɒdʌkt/",
+              "partOfSpeech": "n.",
+              "order": 2,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频具体商业词。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s3-003",
+              "prompt": "工厂",
+              "answer": "factory",
+              "ipa": "/ˈfæktəri/",
+              "partOfSpeech": "n.",
+              "order": 3,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频具体词。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s3-004",
+              "prompt": "生产；制造",
+              "answer": "produce",
+              "ipa": "/prəˈdjuːs/",
+              "partOfSpeech": "v.",
+              "order": 4,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频动词，与 product/production 构成词族。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s3-005",
+              "prompt": "生产；产量",
+              "answer": "production",
+              "ipa": "/prəˈdʌkʃən/",
+              "partOfSpeech": "n.",
+              "order": 5,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见派生名词。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "coordinated production"
+              },
+              "duplicateReview": {
+                "type": "exact-approved-answer",
+                "existingId": "literature-s8-003"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s3-006",
+              "prompt": "获得；取得",
+              "answer": "obtain",
+              "ipa": "/əbˈteɪn/",
+              "partOfSpeech": "v.",
+              "order": 6,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见正式动词。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "obtained materials",
+                "contextForm": "obtained"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s3-007",
+              "prompt": "制造；生产加工",
+              "answer": "manufacture",
+              "ipa": "/ˌmænjuˈfæktʃə(r)/",
+              "partOfSpeech": "v./n.",
+              "order": 7,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "多音节多词性工业词。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "Manufacturers",
+                "relation": "词族词根"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s3-008",
+              "prompt": "制造商；生产者",
+              "answer": "manufacturer",
+              "ipa": "/ˌmænjuˈfæktʃərə(r)/",
+              "partOfSpeech": "n.",
+              "order": 8,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "由 manufacture 加施事后缀构成。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "Manufacturers quickly obtained",
+                "contextForm": "Manufacturers"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s3-009",
+              "prompt": "原材料",
+              "answer": "raw material",
+              "ipa": "/ˌrɔː məˈtɪəriəl/",
+              "partOfSpeech": "n. phr.",
+              "order": 9,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "工业语境固定双词短语。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s3-010",
+              "prompt": "协调；统筹",
+              "answer": "coordinate",
+              "ipa": "/kəʊˈɔːdɪneɪt/",
+              "partOfSpeech": "v.",
+              "order": 10,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "多音节正式动词，截图考查过去式。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "cue": "coordi_____",
+                "completedForm": "coordinated",
+                "answerSuffix": "nated"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s3-011",
+              "prompt": "制成品；成品",
+              "answer": "finished goods",
+              "ipa": "/ˌfɪnɪʃt ˈɡʊdz/",
+              "partOfSpeech": "n. phr.",
+              "order": 11,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "形容词化分词加固定复数名词；不能只靠单个空前后判断。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "cue": "distri_____ finished go_____",
+                "completedPhrase": "distributed finished goods"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s3-012",
+              "prompt": "大规模生产；批量生产",
+              "answer": "mass production",
+              "ipa": "/ˌmæs prəˈdʌkʃən/",
+              "partOfSpeech": "n. phr.",
+              "order": 12,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "工业史固定术语。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s3-013",
+              "prompt": "装配线；流水线",
+              "answer": "assembly line",
+              "ipa": "/əˈsembli laɪn/",
+              "partOfSpeech": "n. phr.",
+              "order": 13,
+              "status": "active",
+              "difficulty": {
+                "level": 4,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "工业生产专业短语。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rail-industry-logistics-s4",
+          "title": "四、工业化、扩张与企业规模",
+          "order": 4,
+          "orderingBasis": "基础词族 → 过程和动作 → 经济史抽象概念。",
+          "items": [
+            {
+              "id": "rail-industry-logistics-s4-001",
+              "prompt": "工业；产业",
+              "answer": "industry",
+              "ipa": "/ˈɪndəstri/",
+              "partOfSpeech": "n.",
+              "order": 1,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频基础名词。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "industrial expansion",
+                "relation": "词族原形"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s4-002",
+              "prompt": "工业的；产业的",
+              "answer": "industrial",
+              "ipa": "/ɪnˈdʌstriəl/",
+              "partOfSpeech": "adj.",
+              "order": 2,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见形容词派生。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "industrial expansion"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s4-003",
+              "prompt": "扩大；扩张",
+              "answer": "expand",
+              "ipa": "/ɪkˈspænd/",
+              "partOfSpeech": "v.",
+              "order": 3,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频基础动词。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "industrial expansion",
+                "relation": "词族原形"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s4-004",
+              "prompt": "扩张；扩大",
+              "answer": "expansion",
+              "ipa": "/ɪkˈspænʃən/",
+              "partOfSpeech": "n.",
+              "order": 4,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见名词派生。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "industrial expansion"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s4-005",
+              "prompt": "加速；促进",
+              "answer": "accelerate",
+              "ipa": "/əkˈseləreɪt/",
+              "partOfSpeech": "v.",
+              "order": 5,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "多音节正式动词。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "accelerated industrial expansion",
+                "contextForm": "accelerated"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s4-006",
+              "prompt": "工业扩张",
+              "answer": "industrial expansion",
+              "ipa": "/ɪnˈdʌstriəl ɪkˈspænʃən/",
+              "partOfSpeech": "n. phr.",
+              "order": 6,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "截图中的核心搭配。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "industrial expansion"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s4-007",
+              "prompt": "商业活动；经营活动",
+              "answer": "business activity",
+              "ipa": "/ˈbɪznəs ækˈtɪvəti/",
+              "partOfSpeech": "n. phr.",
+              "order": 7,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见商业搭配，截图使用复数。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "business activities",
+                "contextForm": "business activities"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s4-008",
+              "prompt": "大陆范围；洲际规模",
+              "answer": "continental scale",
+              "ipa": "/ˌkɒntɪˈnentəl skeɪl/",
+              "partOfSpeech": "n. phr.",
+              "order": 8,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "地理形容词加抽象尺度搭配。",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "on a continental scale"
+              }
+            },
+            {
+              "id": "rail-industry-logistics-s4-009",
+              "prompt": "工业化",
+              "answer": "industrialization",
+              "ipa": "/ɪnˌdʌstriəlaɪˈzeɪʃən/",
+              "partOfSpeech": "n.",
+              "order": 9,
+              "status": "active",
+              "difficulty": {
+                "level": 4,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "长派生词和抽象历史过程。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s4-010",
+              "prompt": "生产率；生产效率",
+              "answer": "productivity",
+              "ipa": "/ˌprɒdʌkˈtɪvəti/",
+              "partOfSpeech": "n.",
+              "order": 10,
+              "status": "active",
+              "difficulty": {
+                "level": 4,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "经济学抽象名词。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            },
+            {
+              "id": "rail-industry-logistics-s4-011",
+              "prompt": "规模经济",
+              "answer": "economies of scale",
+              "ipa": "/ɪˌkɒnəmiz əv ˈskeɪl/",
+              "partOfSpeech": "n. phr.",
+              "order": 11,
+              "status": "active",
+              "difficulty": {
+                "level": 5,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "三词经济学术语，含固定复数形式。",
+              "sourceRefs": [
+                "manual-expansion-rail-industry"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prefix-word-families",
+      "title": "同前缀辨析与词族转换",
+      "order": 4,
+      "count": 50,
+      "sections": [
+        {
+          "id": "prefix-word-families-s1",
+          "title": "一、trans- 同前缀辨析",
+          "order": 1,
+          "orderingBasis": "高频具体动作 → 抽象过程 → 名词派生与低频形容词。",
+          "items": [
+            {
+              "id": "prefix-word-families-s1-001",
+              "prompt": "运输；运送",
+              "answer": "transport",
+              "ipa": "/ˈtrænspɔːt; trænˈspɔːt/",
+              "partOfSpeech": "n./v.",
+              "order": 1,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频具体动作；名词和动词重音不同。",
+              "diagnosisTags": [
+                "prefix_confusion"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "transport",
+              "contrastNote": "强调把人或物从一地运到另一地。",
+              "sourceRefs": [
+                "reading-2026-04-c",
+                "user-report-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s1-002",
+              "prompt": "转移；调动；转让",
+              "answer": "transfer",
+              "ipa": "/ˈtrænsfɜː(r); trænsˈfɜː(r)/",
+              "partOfSpeech": "n./v.",
+              "order": 2,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "高频多义词；名词和动词重音可不同。",
+              "diagnosisTags": [
+                "prefix_confusion"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "transfer",
+              "contrastNote": "强调从一个人、地点、系统或所有者转到另一个。",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s1-003",
+              "prompt": "翻译",
+              "answer": "translate",
+              "ipa": "/trænzˈleɪt/",
+              "partOfSpeech": "v.",
+              "order": 3,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频动作词。",
+              "diagnosisTags": [
+                "prefix_confusion"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "translate",
+              "contrastNote": "强调语言之间的转换。",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s1-004",
+              "prompt": "使改变形态；使彻底转变",
+              "answer": "transform",
+              "ipa": "/trænsˈfɔːm/",
+              "partOfSpeech": "v.",
+              "order": 4,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见学术动词；截图直接考查第三人称单数。",
+              "diagnosisTags": [
+                "prefix_confusion",
+                "recall_gap"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "transform",
+              "contrastNote": "强调性质、形态或状态发生显著改变。",
+              "sourceRefs": [
+                "reading-2026-04-d",
+                "user-report-prefix-family"
+              ],
+              "sourceEvidence": {
+                "cue": "tran_____",
+                "completedForm": "transforms",
+                "answerSuffix": "sforms"
+              }
+            },
+            {
+              "id": "prefix-word-families-s1-005",
+              "prompt": "过渡；转变过程",
+              "answer": "transition",
+              "ipa": "/trænˈzɪʃən/",
+              "partOfSpeech": "n./v.",
+              "order": 5,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "抽象过程词。",
+              "diagnosisTags": [
+                "prefix_confusion"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "transition",
+              "contrastNote": "强调从一种阶段或状态过渡到另一种。",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s1-006",
+              "prompt": "交易；业务；事务处理",
+              "answer": "transaction",
+              "ipa": "/trænˈzækʃən/",
+              "partOfSpeech": "n.",
+              "order": 6,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "抽象商业名词。",
+              "diagnosisTags": [
+                "prefix_confusion"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "transaction",
+              "contrastNote": "通常指一次买卖、转账或正式业务处理。",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s1-007",
+              "prompt": "传送；传输；传播（动词）",
+              "answer": "transmit",
+              "ipa": "/trænzˈmɪt/",
+              "partOfSpeech": "v.",
+              "order": 7,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "学术和技术语境高频，词尾变化需注意。",
+              "diagnosisTags": [
+                "prefix_confusion"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "transmit",
+              "contrastNote": "强调信号、信息、疾病或能量的传递。",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s1-008",
+              "prompt": "运输；运输业",
+              "answer": "transportation",
+              "ipa": "/ˌtrænspɔːˈteɪʃən/",
+              "partOfSpeech": "n.",
+              "order": 8,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "transport 的长名词派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "transport",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ],
+              "duplicateReview": {
+                "type": "exact-approved-answer",
+                "existingId": "geology-s4-006"
+              }
+            },
+            {
+              "id": "prefix-word-families-s1-009",
+              "prompt": "翻译；译文",
+              "answer": "translation",
+              "ipa": "/trænzˈleɪʃən/",
+              "partOfSpeech": "n.",
+              "order": 9,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "translate 的名词派生，拼写变化明显。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "translate",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s1-010",
+              "prompt": "转变；改造",
+              "answer": "transformation",
+              "ipa": "/ˌtrænsfəˈmeɪʃən/",
+              "partOfSpeech": "n.",
+              "order": 10,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "transform 的多音节名词派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "transform",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s1-011",
+              "prompt": "传送；传输；传播过程（名词）",
+              "answer": "transmission",
+              "ipa": "/trænzˈmɪʃən/",
+              "partOfSpeech": "n.",
+              "order": 11,
+              "status": "active",
+              "difficulty": {
+                "level": 4,
+                "confidence": "high"
+              },
+              "difficultyBasis": "transmit 的名词派生，词干拼写变化较大。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "transmit",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s1-012",
+              "prompt": "可转移的；可转让的",
+              "answer": "transferable",
+              "ipa": "/trænsˈfɜːrəbl/",
+              "partOfSpeech": "adj.",
+              "order": 12,
+              "status": "active",
+              "difficulty": {
+                "level": 4,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "多音节形容词派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "transfer",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s1-013",
+              "prompt": "过渡的；转型期的",
+              "answer": "transitional",
+              "ipa": "/trænˈzɪʃənəl/",
+              "partOfSpeech": "adj.",
+              "order": 13,
+              "status": "active",
+              "difficulty": {
+                "level": 4,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "抽象形容词派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "transition",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s1-014",
+              "prompt": "横贯大陆的；洲际的",
+              "answer": "transcontinental",
+              "ipa": "/ˌtrænzkɒntɪˈnentəl/",
+              "partOfSpeech": "adj.",
+              "order": 14,
+              "status": "active",
+              "difficulty": {
+                "level": 5,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "长复合派生词和铁路史领域含义。",
+              "diagnosisTags": [
+                "prefix_confusion",
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "t",
+                "tr",
+                "tra",
+                "tran"
+              ],
+              "wordFamily": "transcontinental",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prefix-word-families-s2",
+          "title": "二、common、community、communal 与 communicate",
+          "order": 2,
+          "orderingBasis": "熟悉的基础词 → 截图目标派生词 → 交流词族及形容词。",
+          "items": [
+            {
+              "id": "prefix-word-families-s2-001",
+              "prompt": "常见的；共同的",
+              "answer": "common",
+              "ipa": "/ˈkɒmən/",
+              "partOfSpeech": "adj.",
+              "order": 1,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频基础形容词。",
+              "diagnosisTags": [
+                "prefix_confusion"
+              ],
+              "retrievalPrefixes": [
+                "c",
+                "co",
+                "com",
+                "comm"
+              ],
+              "wordFamily": "common/community",
+              "contrastNote": "侧重“常见”或“共同拥有”，不等于 communal。",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s2-002",
+              "prompt": "社区；群体",
+              "answer": "community",
+              "ipa": "/kəˈmjuːnəti/",
+              "partOfSpeech": "n.",
+              "order": 2,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频基础名词。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "c",
+                "co",
+                "com",
+                "comm"
+              ],
+              "wordFamily": "common/community",
+              "contrastNote": "指共同生活、兴趣或身份构成的人群。",
+              "sourceRefs": [
+                "reading-2026-03-a"
+              ],
+              "sourceEvidence": {
+                "quotation": "creative communities",
+                "contextForm": "communities"
+              }
+            },
+            {
+              "id": "prefix-word-families-s2-003",
+              "prompt": "公共的；群体共有的",
+              "answer": "communal",
+              "ipa": "/ˈkɒmjənəl/",
+              "partOfSpeech": "adj.",
+              "order": 3,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "community 相关形容词，但词形不能直接机械推出。",
+              "diagnosisTags": [
+                "word_family_gap",
+                "recall_gap"
+              ],
+              "retrievalPrefixes": [
+                "c",
+                "co",
+                "com",
+                "comm"
+              ],
+              "wordFamily": "common/community",
+              "contrastNote": "修饰由群体共同使用、分享或参与的事物。",
+              "sourceRefs": [
+                "reading-2026-03-a",
+                "user-report-prefix-family"
+              ],
+              "sourceEvidence": {
+                "cue": "comm_____ environment",
+                "completedForm": "communal",
+                "answerSuffix": "unal"
+              }
+            },
+            {
+              "id": "prefix-word-families-s2-004",
+              "prompt": "共同的环境；群体共享的环境",
+              "answer": "communal environment",
+              "ipa": "/ˈkɒmjənəl ɪnˈvaɪrənmənt/",
+              "partOfSpeech": "n. phr.",
+              "order": 4,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "截图中的原始搭配，语义比单词更易固定。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "c",
+                "co",
+                "com",
+                "comm"
+              ],
+              "wordFamily": "common/community",
+              "sourceRefs": [
+                "reading-2026-03-a"
+              ],
+              "sourceEvidence": {
+                "cue": "A comm_____ environment",
+                "completedPhrase": "A communal environment"
+              }
+            },
+            {
+              "id": "prefix-word-families-s2-005",
+              "prompt": "交流；传达",
+              "answer": "communicate",
+              "ipa": "/kəˈmjuːnɪkeɪt/",
+              "partOfSpeech": "v.",
+              "order": 5,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频动词，但与 communal 仅共享相近词首。",
+              "diagnosisTags": [
+                "prefix_confusion"
+              ],
+              "retrievalPrefixes": [
+                "c",
+                "co",
+                "com",
+                "comm"
+              ],
+              "wordFamily": "communicate",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s2-006",
+              "prompt": "交流；通信；传达",
+              "answer": "communication",
+              "ipa": "/kəˌmjuːnɪˈkeɪʃən/",
+              "partOfSpeech": "n.",
+              "order": 6,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "communicate 的长名词派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "c",
+                "co",
+                "com",
+                "comm"
+              ],
+              "wordFamily": "communicate",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s2-007",
+              "prompt": "通常地；常见地",
+              "answer": "commonly",
+              "ipa": "/ˈkɒmənli/",
+              "partOfSpeech": "adv.",
+              "order": 7,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "common 的副词派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "c",
+                "co",
+                "com",
+                "comm"
+              ],
+              "wordFamily": "common/community",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s2-008",
+              "prompt": "善于沟通的；交际的",
+              "answer": "communicative",
+              "ipa": "/kəˈmjuːnɪkətɪv/",
+              "partOfSpeech": "adj.",
+              "order": 8,
+              "status": "active",
+              "difficulty": {
+                "level": 4,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "较低频形容词派生，音节和后缀负担更高。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "c",
+                "co",
+                "com",
+                "comm"
+              ],
+              "wordFamily": "communicate",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prefix-word-families-s3",
+          "title": "三、experience 与 experiment 词族",
+          "order": 3,
+          "orderingBasis": "高频基础词 → 截图易混词与搭配 → 高阶名词和形容词派生。",
+          "items": [
+            {
+              "id": "prefix-word-families-s3-001",
+              "prompt": "经历；经验；体验",
+              "answer": "experience",
+              "ipa": "/ɪkˈspɪəriəns/",
+              "partOfSpeech": "n./v.",
+              "order": 1,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频基础词，但会竞争 exp- 开头检索。",
+              "diagnosisTags": [
+                "prefix_confusion"
+              ],
+              "retrievalPrefixes": [
+                "e",
+                "ex",
+                "exp",
+                "expe"
+              ],
+              "wordFamily": "experience",
+              "contrastNote": "experience 指经历或经验，不是主动进行的实验。",
+              "sourceRefs": [
+                "reading-2026-03-a",
+                "user-report-prefix-family"
+              ],
+              "sourceEvidence": {
+                "userCompletion": "erience",
+                "expectedCompletion": "eriment",
+                "cue": "exp_____"
+              }
+            },
+            {
+              "id": "prefix-word-families-s3-002",
+              "prompt": "有经验的；熟练的",
+              "answer": "experienced",
+              "ipa": "/ɪkˈspɪəriənst/",
+              "partOfSpeech": "adj.",
+              "order": 2,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "experience 的常见分词形容词。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "e",
+                "ex",
+                "exp",
+                "expe"
+              ],
+              "wordFamily": "experience",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s3-003",
+              "prompt": "实验；做实验",
+              "answer": "experiment",
+              "ipa": "/ɪkˈsperɪmənt; ɪkˈsperɪment/",
+              "partOfSpeech": "n./v.",
+              "order": 3,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见多词性词；截图与 experience 发生竞争。",
+              "diagnosisTags": [
+                "prefix_confusion",
+                "recall_gap"
+              ],
+              "retrievalPrefixes": [
+                "e",
+                "ex",
+                "exp",
+                "expe"
+              ],
+              "wordFamily": "experiment",
+              "contrastNote": "experiment 指有目的的试验或尝试。",
+              "sourceRefs": [
+                "reading-2026-03-a",
+                "user-report-prefix-family"
+              ],
+              "sourceEvidence": {
+                "cue": "exp_____ with new ideas",
+                "completedForm": "experiment",
+                "answerSuffix": "eriment"
+              }
+            },
+            {
+              "id": "prefix-word-families-s3-004",
+              "prompt": "尝试；试验（某物）",
+              "answer": "experiment with",
+              "ipa": "/ɪkˈsperɪment wɪð/",
+              "partOfSpeech": "v. phr.",
+              "order": 4,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "截图原始动词搭配，介词固定。",
+              "diagnosisTags": [
+                "prefix_confusion"
+              ],
+              "retrievalPrefixes": [
+                "e",
+                "ex",
+                "exp",
+                "expe"
+              ],
+              "wordFamily": "experiment",
+              "sourceRefs": [
+                "reading-2026-03-a"
+              ],
+              "sourceEvidence": {
+                "cue": "exp_____ with new ideas",
+                "completedPhrase": "experiment with new ideas"
+              }
+            },
+            {
+              "id": "prefix-word-families-s3-005",
+              "prompt": "实验的；试验性的",
+              "answer": "experimental",
+              "ipa": "/ɪkˌsperɪˈmentəl/",
+              "partOfSpeech": "adj.",
+              "order": 5,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "experiment 的常见形容词派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "e",
+                "ex",
+                "exp",
+                "expe"
+              ],
+              "wordFamily": "experiment",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s3-006",
+              "prompt": "实验性地；试验性地",
+              "answer": "experimentally",
+              "ipa": "/ɪkˌsperɪˈmentəli/",
+              "partOfSpeech": "adv.",
+              "order": 6,
+              "status": "active",
+              "difficulty": {
+                "level": 4,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "较长副词派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "e",
+                "ex",
+                "exp",
+                "expe"
+              ],
+              "wordFamily": "experiment",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s3-007",
+              "prompt": "实验；试验过程",
+              "answer": "experimentation",
+              "ipa": "/ɪkˌsperɪmenˈteɪʃən/",
+              "partOfSpeech": "n.",
+              "order": 7,
+              "status": "active",
+              "difficulty": {
+                "level": 4,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "多音节抽象名词派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "e",
+                "ex",
+                "exp",
+                "expe"
+              ],
+              "wordFamily": "experiment",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s3-008",
+              "prompt": "基于亲身体验的；体验式的",
+              "answer": "experiential",
+              "ipa": "/ɪkˌspɪəriˈenʃəl/",
+              "partOfSpeech": "adj.",
+              "order": 8,
+              "status": "active",
+              "difficulty": {
+                "level": 5,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "低频抽象形容词，需从 experience 识别不规则派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "e",
+                "ex",
+                "exp",
+                "expe"
+              ],
+              "wordFamily": "experience",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prefix-word-families-s4",
+          "title": "四、material 与 produce/product 词族",
+          "order": 4,
+          "orderingBasis": "基础名词和动词 → 复数或固定搭配 → 名词与形容词派生。",
+          "items": [
+            {
+              "id": "prefix-word-families-s4-001",
+              "prompt": "材料；物质；物质的",
+              "answer": "material",
+              "ipa": "/məˈtɪəriəl/",
+              "partOfSpeech": "n./adj.",
+              "order": 1,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频熟词；难点是 mate- 线索下的主动检索及多词性。",
+              "diagnosisTags": [
+                "recall_gap",
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "m",
+                "ma",
+                "mat",
+                "mate"
+              ],
+              "wordFamily": "material",
+              "sourceRefs": [
+                "reading-2026-04-c",
+                "user-report-prefix-family"
+              ],
+              "sourceEvidence": {
+                "cue": "mate_____",
+                "completedForm": "materials",
+                "answerSuffix": "rials"
+              },
+              "crossCandidateDuplicate": "rail-industry-logistics-s3-001"
+            },
+            {
+              "id": "prefix-word-families-s4-002",
+              "prompt": "材料；原料（复数）",
+              "answer": "materials",
+              "ipa": "/məˈtɪəriəlz/",
+              "partOfSpeech": "n. pl.",
+              "order": 2,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "截图实际词形；单复数是完形填空的一部分。",
+              "diagnosisTags": [
+                "recall_gap"
+              ],
+              "retrievalPrefixes": [
+                "m",
+                "ma",
+                "mat",
+                "mate"
+              ],
+              "wordFamily": "material",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "cue": "mate_____",
+                "completedForm": "materials",
+                "answerSuffix": "rials"
+              }
+            },
+            {
+              "id": "prefix-word-families-s4-003",
+              "prompt": "生产；制造",
+              "answer": "produce",
+              "ipa": "/prəˈdjuːs/",
+              "partOfSpeech": "v.",
+              "order": 3,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频基础动词。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "p",
+                "pr",
+                "pro",
+                "prod"
+              ],
+              "wordFamily": "produce/product",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s4-004",
+              "prompt": "产品；制品",
+              "answer": "product",
+              "ipa": "/ˈprɒdʌkt/",
+              "partOfSpeech": "n.",
+              "order": 4,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频基础名词。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "p",
+                "pr",
+                "pro",
+                "prod"
+              ],
+              "wordFamily": "produce/product",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s4-005",
+              "prompt": "原材料（复数）",
+              "answer": "raw materials",
+              "ipa": "/ˌrɔː məˈtɪəriəlz/",
+              "partOfSpeech": "n. phr.",
+              "order": 5,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "与 finished goods 构成生产流程中的高频对照搭配。",
+              "diagnosisTags": [
+                "recall_gap",
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "r",
+                "ra",
+                "raw"
+              ],
+              "wordFamily": "material",
+              "contrastNote": "raw materials 是生产投入；finished goods 是完成加工、可供销售的产出。",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s4-006",
+              "prompt": "生产；产量",
+              "answer": "production",
+              "ipa": "/prəˈdʌkʃən/",
+              "partOfSpeech": "n.",
+              "order": 6,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见名词派生；截图为原形名词。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "p",
+                "pr",
+                "pro",
+                "prod"
+              ],
+              "wordFamily": "produce/product",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "coordinated production"
+              },
+              "duplicateReview": {
+                "type": "exact-approved-answer",
+                "existingId": "literature-s8-003"
+              },
+              "crossCandidateDuplicate": "rail-industry-logistics-s3-005"
+            },
+            {
+              "id": "prefix-word-families-s4-007",
+              "prompt": "多产的；富有成效的",
+              "answer": "productive",
+              "ipa": "/prəˈdʌktɪv/",
+              "partOfSpeech": "adj.",
+              "order": 7,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见形容词派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "p",
+                "pr",
+                "pro",
+                "prod"
+              ],
+              "wordFamily": "produce/product",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prefix-word-families-s5",
+          "title": "五、distribute 与 finished goods",
+          "order": 5,
+          "orderingBasis": "高频基础动词 → 分词形式 → 流通动作与固定成品搭配 → 名词派生。",
+          "items": [
+            {
+              "id": "prefix-word-families-s5-001",
+              "prompt": "完成；结束",
+              "answer": "finish",
+              "ipa": "/ˈfɪnɪʃ/",
+              "partOfSpeech": "v./n.",
+              "order": 1,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频基础词。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "f",
+                "fi",
+                "fin",
+                "fini"
+              ],
+              "wordFamily": "finish",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "finished goods",
+                "relation": "词族原形"
+              }
+            },
+            {
+              "id": "prefix-word-families-s5-002",
+              "prompt": "完成的；制成的",
+              "answer": "finished",
+              "ipa": "/ˈfɪnɪʃt/",
+              "partOfSpeech": "adj./pp.",
+              "order": 2,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频分词形容词；在截图中修饰 goods。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "f",
+                "fi",
+                "fin",
+                "fini"
+              ],
+              "wordFamily": "finish",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "quotation": "finished goods"
+              }
+            },
+            {
+              "id": "prefix-word-families-s5-003",
+              "prompt": "分发；分配；配送",
+              "answer": "distribute",
+              "ipa": "/dɪˈstrɪbjuːt/",
+              "partOfSpeech": "v.",
+              "order": 3,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见学术动词；截图考查过去式。",
+              "diagnosisTags": [
+                "word_family_gap",
+                "recall_gap"
+              ],
+              "retrievalPrefixes": [
+                "d",
+                "di",
+                "dis",
+                "dist"
+              ],
+              "wordFamily": "distribute",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "cue": "distri_____",
+                "completedForm": "distributed",
+                "answerSuffix": "buted"
+              }
+            },
+            {
+              "id": "prefix-word-families-s5-004",
+              "prompt": "已分发的；分布式的",
+              "answer": "distributed",
+              "ipa": "/dɪˈstrɪbjuːtɪd/",
+              "partOfSpeech": "v. past/pp.; adj.",
+              "order": 4,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "截图实际词形，同时可作分词形容词。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "d",
+                "di",
+                "dis",
+                "dist"
+              ],
+              "wordFamily": "distribute",
+              "sourceRefs": [
+                "reading-2026-04-c"
+              ],
+              "sourceEvidence": {
+                "cue": "distri_____ finished goods",
+                "completedForm": "distributed",
+                "answerSuffix": "buted"
+              }
+            },
+            {
+              "id": "prefix-word-families-s5-005",
+              "prompt": "制成品；成品",
+              "answer": "finished goods",
+              "ipa": "/ˌfɪnɪʃt ˈɡʊdz/",
+              "partOfSpeech": "n. phr.",
+              "order": 5,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "固定搭配；finished 和 goods 分处不同线索位置时语法提示变弱。",
+              "diagnosisTags": [
+                "recall_gap",
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "f",
+                "fi",
+                "fin",
+                "fini"
+              ],
+              "wordFamily": "finish",
+              "sourceRefs": [
+                "reading-2026-04-c",
+                "user-report-prefix-family"
+              ],
+              "sourceEvidence": {
+                "cue": "distri_____ finished go_____",
+                "completedPhrase": "distributed finished goods"
+              },
+              "crossCandidateDuplicate": "rail-industry-logistics-s3-011"
+            },
+            {
+              "id": "prefix-word-families-s5-006",
+              "prompt": "分配；分销；分布",
+              "answer": "distribution",
+              "ipa": "/ˌdɪstrɪˈbjuːʃən/",
+              "partOfSpeech": "n.",
+              "order": 6,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见名词派生，词尾拼写变化。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "d",
+                "di",
+                "dis",
+                "dist"
+              ],
+              "wordFamily": "distribute",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s5-007",
+              "prompt": "经销商；分销商",
+              "answer": "distributor",
+              "ipa": "/dɪˈstrɪbjətə(r)/",
+              "partOfSpeech": "n.",
+              "order": 7,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "施事名词派生及商业专义。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "d",
+                "di",
+                "dis",
+                "dist"
+              ],
+              "wordFamily": "distribute",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prefix-word-families-s6",
+          "title": "六、artistic 与 enrich 词族",
+          "order": 6,
+          "orderingBasis": "基础名词 → 形容词和动词派生 → 抽象名词与副词。",
+          "items": [
+            {
+              "id": "prefix-word-families-s6-001",
+              "prompt": "艺术",
+              "answer": "art",
+              "ipa": "/ɑːt/",
+              "partOfSpeech": "n.",
+              "order": 1,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频基础词。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "a",
+                "ar",
+                "art"
+              ],
+              "wordFamily": "art/artist",
+              "sourceRefs": [
+                "reading-2026-03-a"
+              ],
+              "sourceEvidence": {
+                "quotation": "Artists",
+                "relation": "词族词根"
+              }
+            },
+            {
+              "id": "prefix-word-families-s6-002",
+              "prompt": "艺术家",
+              "answer": "artist",
+              "ipa": "/ˈɑːtɪst/",
+              "partOfSpeech": "n.",
+              "order": 2,
+              "status": "active",
+              "difficulty": {
+                "level": 1,
+                "confidence": "high"
+              },
+              "difficultyBasis": "高频施事名词。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "a",
+                "ar",
+                "art",
+                "arti"
+              ],
+              "wordFamily": "art/artist",
+              "sourceRefs": [
+                "reading-2026-03-a"
+              ],
+              "sourceEvidence": {
+                "quotation": "Artists often do their best work",
+                "contextForm": "Artists"
+              }
+            },
+            {
+              "id": "prefix-word-families-s6-003",
+              "prompt": "艺术的；有艺术性的",
+              "answer": "artistic",
+              "ipa": "/ɑːˈtɪstɪk/",
+              "partOfSpeech": "adj.",
+              "order": 3,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见形容词派生，截图直接考查。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "a",
+                "ar",
+                "art",
+                "arti"
+              ],
+              "wordFamily": "art/artist",
+              "sourceRefs": [
+                "reading-2026-03-a"
+              ],
+              "sourceEvidence": {
+                "cue": "arti_____ traditions",
+                "completedForm": "artistic",
+                "answerSuffix": "stic"
+              },
+              "duplicateReview": {
+                "type": "component-of-approved-phrase",
+                "existingId": "literature-s9-013",
+                "existingAnswer": "artistic movement"
+              }
+            },
+            {
+              "id": "prefix-word-families-s6-004",
+              "prompt": "使丰富；充实；改善",
+              "answer": "enrich",
+              "ipa": "/ɪnˈrɪtʃ/",
+              "partOfSpeech": "v.",
+              "order": 4,
+              "status": "active",
+              "difficulty": {
+                "level": 2,
+                "confidence": "high"
+              },
+              "difficultyBasis": "常见前缀派生动词；截图考查现在分词。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "e",
+                "en",
+                "enr",
+                "enri"
+              ],
+              "wordFamily": "enrich",
+              "sourceRefs": [
+                "reading-2026-03-a"
+              ],
+              "sourceEvidence": {
+                "cue": "enr_____ local artistic traditions",
+                "completedForm": "enriching",
+                "answerSuffix": "iching"
+              }
+            },
+            {
+              "id": "prefix-word-families-s6-005",
+              "prompt": "丰富；充实；改善",
+              "answer": "enrichment",
+              "ipa": "/ɪnˈrɪtʃmənt/",
+              "partOfSpeech": "n.",
+              "order": 5,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "high"
+              },
+              "difficultyBasis": "enrich 的名词派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "e",
+                "en",
+                "enr",
+                "enri"
+              ],
+              "wordFamily": "enrich",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
+            },
+            {
+              "id": "prefix-word-families-s6-006",
+              "prompt": "艺术地；富有艺术性地",
+              "answer": "artistically",
+              "ipa": "/ɑːˈtɪstɪkli/",
+              "partOfSpeech": "adv.",
+              "order": 6,
+              "status": "active",
+              "difficulty": {
+                "level": 3,
+                "confidence": "medium"
+              },
+              "difficultyBasis": "较长副词派生。",
+              "diagnosisTags": [
+                "word_family_gap"
+              ],
+              "retrievalPrefixes": [
+                "a",
+                "ar",
+                "art",
+                "arti"
+              ],
+              "wordFamily": "art/artist",
+              "sourceRefs": [
+                "manual-expansion-prefix-family"
+              ]
             }
           ]
         }

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>熟词前缀联想工作台</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#workspace">跳到练习区</a>
+  <header class="masthead">
+    <div class="masthead__rule" aria-hidden="true"></div>
+    <p class="kicker">PREFIX RECALL · INDEX 01</p>
+    <h1>熟词前缀<br><span>联想工作台</span></h1>
+    <p class="lede">不是猜唯一答案。看到 1–4 个字母，尽可能把脑中的词全部调出来，再用高频词库补齐盲区。</p>
+    <div class="specimen" aria-hidden="true"><b>TR</b><i>ANS</i><small>跨越 · 转移</small></div>
+  </header>
+
+  <nav class="mode-tabs" aria-label="学习模式">
+    <button class="tab is-active" type="button" data-view="practice" aria-selected="true">01 前缀联想</button>
+    <button class="tab" type="button" data-view="compare" aria-selected="false">02 近形辨析</button>
+    <button class="tab" type="button" data-view="families" aria-selected="false">03 词族工坊</button>
+    <button class="tab" type="button" data-view="history" aria-selected="false">04 练习记录</button>
+  </nav>
+
+  <main id="workspace" class="workspace">
+    <section id="practice-view" class="view is-active" aria-labelledby="practice-title">
+      <div class="section-heading">
+        <p class="folio">练习纸 / A</p>
+        <div><h2 id="practice-title">写出所有想得到的词</h2><p>一行一个，也可以用逗号或分号分隔。按常用程度展示参考库，不把库外但合理的答案判错。</p></div>
+      </div>
+
+      <div class="practice-grid">
+        <aside class="control-card">
+          <fieldset>
+            <legend>系统出题长度</legend>
+            <div class="length-options">
+              <label><input type="radio" name="prefix-length" value="1">1</label>
+              <label><input type="radio" name="prefix-length" value="2" checked>2</label>
+              <label><input type="radio" name="prefix-length" value="3">3</label>
+              <label><input type="radio" name="prefix-length" value="4">4</label>
+            </div>
+          </fieldset>
+          <button id="next-prefix" class="button button--ink" type="button">给我下一题</button>
+          <div class="manual-box">
+            <label for="manual-prefix">或者手动指定</label>
+            <div><input id="manual-prefix" type="text" maxlength="4" inputmode="text" autocomplete="off" placeholder="如 trans"><button id="use-prefix" type="button">使用</button></div>
+          </div>
+          <p class="privacy-note">记录只保存在此浏览器，不会上传。</p>
+        </aside>
+
+        <article class="answer-sheet">
+          <div class="prefix-ticket"><span>本题前缀</span><strong id="active-prefix">CO</strong><em id="match-hint">载入中…</em></div>
+          <label for="recall-input">你的联想词</label>
+          <textarea id="recall-input" rows="10" spellcheck="false" placeholder="common&#10;community&#10;communicate"></textarea>
+          <div class="sheet-actions"><span>Ctrl / ⌘ + Enter 提交</span><button id="submit-recall" class="button button--red" type="button">核对词库</button></div>
+        </article>
+      </div>
+
+      <section id="results" class="results" hidden aria-live="polite"></section>
+    </section>
+
+    <section id="compare-view" class="view" aria-labelledby="compare-title" hidden>
+      <div class="section-heading"><p class="folio">索引卡 / B</p><div><h2 id="compare-title">近形词不靠“看起来像”</h2><p>拆开共同前缀，比较真正决定含义的词根、词性和搭配。</p></div></div>
+      <section class="clue-lab" aria-labelledby="clue-lab-title">
+        <header><p>ERROR LAB · 04 CASES</p><h3 id="clue-lab-title">线索拆解／错因实验室</h3></header>
+        <div class="clue-grid">
+          <article><span>01</span><code>tran____ sediment into solid rock</code><p><b>transport</b> 和 <b>transform</b> 都能接宾语，但 <mark>transform A into B</mark> 表示“把 A 变成 B”。这里是物质状态变化，所以完整形式是 <strong>transforms</strong>。</p></article>
+          <article><span>02</span><code>obtained materials, coordinated production, and distributed finished goods</code><p><b>obtained / coordinated / distributed</b> 是三个过去式谓语并列；<b>finished</b> 是形容词，修饰 <b>goods</b>。同时记产业链搭配：<mark>raw materials ↔ finished goods</mark>。</p></article>
+          <article><span>03</span><code>a communal environment</code><p><b>community→communal</b>：community 是“共同体、社群”，转换为形容词 <strong>communal</strong>，表示“共享的、共同的”。空格后是 environment，需要形容词修饰。</p></article>
+          <article><span>04</span><code>allow artists to exchange … and experiment with new ideas</code><p><mark>allow + 宾语 + to do</mark>，to 后由 and 连接两个并列原形：exchange 和 <strong>experiment</strong>。<b>experiment with</b> 是“尝试”；<b>experience with</b> 通常是名词结构“在……方面的经验”。</p></article>
+        </div>
+      </section>
+      <div id="comparison-cards" class="card-index"></div>
+    </section>
+
+    <section id="families-view" class="view" aria-labelledby="families-title" hidden>
+      <div class="section-heading"><p class="folio">活字盘 / C</p><div><h2 id="families-title">从一个熟词扩展整套词形</h2><p>先识别句子空位需要的词性，再从词根中选择正确成员。</p></div></div>
+      <div id="family-cards" class="family-grid"></div>
+    </section>
+
+    <section id="history-view" class="view" aria-labelledby="history-title" hidden>
+      <div class="section-heading"><p class="folio">账簿 / D</p><div><h2 id="history-title">本机练习记录</h2><p>只保存前缀、数量和时间，不保存到服务器。</p></div></div>
+      <div class="history-toolbar"><p id="history-summary"></p><button id="clear-history" class="text-button" type="button">清空本机记录</button></div>
+      <ol id="history-list" class="history-list"></ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>专题词来自本地正式词库。高频排序数据来自 <a href="https://github.com/aparrish/wordfreq-en-25000">aparrish/wordfreq-en-25000</a>，基于 wordfreq，按 CC BY-SA 4.0 使用。</p>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./word-bank.js"></script>
+  <script src="./logic.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

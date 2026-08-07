@@ -1,0 +1,15 @@
+{
+  "name": "prefix-recall-workbench",
+  "version": "1.0.0",
+  "private": true,
+  "description": "熟词前缀联想、近形辨析与词族练习静态网页",
+  "scripts": {
+    "build:data": "node scripts/build-word-bank.mjs",
+    "test:logic": "node tests/logic.test.js",
+    "test:browser": "node tests/browser.smoke.test.js",
+    "test": "npm run test:logic && npm run test:browser"
+  },
+  "devDependencies": {
+    "playwright": "1.62.0"
+  }
+}
