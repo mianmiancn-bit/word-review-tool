@@ -49,6 +49,10 @@ const validSession = {
   completed: false
 };
 assert.equal(logic.validateBackup({ schemaVersion: 4, activeSession: validSession, history: [], excludedIds: [] }).valid, true);
+for (const schemaVersion of [2, 3]) {
+  const validation = logic.validateBackup({ schemaVersion, activeSession: validSession, history: [] });
+  assert.equal(validation.valid, true);
+  assert.equal(validation.legacy, true);
+}
 
 console.log("logic.test.js: all assertions passed");
-
