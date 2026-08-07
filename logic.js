@@ -5,7 +5,7 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function createLogic() {
   "use strict";
 
-  const SCHEMA_VERSION = 2;
+  const SCHEMA_VERSION = 3;
 
   function normalizeAnswer(value) {
     return String(value ?? "")
@@ -29,13 +29,13 @@
 
   function validateBackup(value) {
     if (!value || typeof value !== "object") return { valid: false, error: "文件内容不是对象" };
-    if (![1, SCHEMA_VERSION].includes(value.schemaVersion)) {
+    if (![1, 2, SCHEMA_VERSION].includes(value.schemaVersion)) {
       return { valid: false, error: `不支持的数据版本：${value.schemaVersion ?? "未知"}` };
     }
     if (!Array.isArray(value.history)) {
       return { valid: false, error: "缺少历史记录数组" };
     }
-    return { valid: true, legacy: value.schemaVersion === 1 };
+    return { valid: true, legacy: value.schemaVersion !== SCHEMA_VERSION };
   }
 
   return {

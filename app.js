@@ -5,8 +5,8 @@ const toast = document.getElementById("toast");
 const progressImport = document.getElementById("progress-import");
 const logic = window.DictationLogic;
 const BUILTIN_SETS = Array.isArray(window.BUILTIN_WORD_SETS) ? window.BUILTIN_WORD_SETS : [];
-const STORAGE_KEY = "vocab-dictation-notebook-v2";
-const LEGACY_STORAGE_KEY = "vocab-dictation-notebook-v1";
+const STORAGE_KEY = "vocab-dictation-notebook-v3";
+const LEGACY_STORAGE_KEYS = ["vocab-dictation-notebook-v2", "vocab-dictation-notebook-v1"];
 const MAJOR_NUMERALS = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
 
 const state = {
@@ -25,7 +25,8 @@ function emptyStore() {
 
 function loadStore() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY)
+      || LEGACY_STORAGE_KEYS.map((key) => localStorage.getItem(key)).find(Boolean);
     if (!raw) return emptyStore();
     const parsed = JSON.parse(raw);
     const validation = logic.validateBackup(parsed);
@@ -82,16 +83,16 @@ function majorLabel(index) {
   return `第${numeral}大题`;
 }
 
-function flattenSet(set) {
-  return set.sections.flatMap((section, sectionIndex) =>
-    section.items.map((item, itemIndex) => ({
-      ...item,
-      sectionId: section.id,
-      sectionTitle: section.title,
-      sectionIndex,
-      itemNumber: itemIndex + 1
-    }))
-  );
+function sectionItems(set, sectionIndex) {
+  const section = set.sections[sectionIndex];
+  if (!section) return [];
+  return section.items.map((item, itemIndex) => ({
+    ...item,
+    sectionId: section.id,
+    sectionTitle: section.title,
+    sectionIndex,
+    itemNumber: itemIndex + 1
+  }));
 }
 
 function formatDate(value) {
@@ -120,7 +121,7 @@ function shell(content, compact = false) {
       ${content}
       <footer class="site-footer">
         <span>中文 → English</span>
-        <span>原序整卷 · 实用严格判分 · 错词循环</span>
+        <span>大题独立 · 实用严格判分 · 错词循环</span>
         <span>非 ETS 官方产品</span>
       </footer>
     </div>`;
@@ -136,40 +137,54 @@ function renderHome() {
   const sectionCount = BUILTIN_SETS.reduce((sum, set) => sum + set.sections.length, 0);
   const active = state.store.activeSession;
   const recent = state.store.history.slice(-5).reverse();
+  const completedSectionIds = new Set(
+    state.store.history
+      .filter((entry) => entry.setId === selected?.id && entry.sectionId)
+      .map((entry) => entry.sectionId)
+  );
 
   const setOptions = BUILTIN_SETS.map((set) => `
     <option value="${escapeHtml(set.id)}" ${set.id === selected?.id ? "selected" : ""}>
       ${escapeHtml(set.title)} · ${totalItems(set)} 词
     </option>`).join("");
 
-  const outline = selected?.sections.map((section, index) => `
-    <li>
-      <span>${majorLabel(index)}</span>
-      <strong>${escapeHtml(section.title)}</strong>
-      <small>${section.items.length} 词</small>
-    </li>`).join("") || "";
+  const outline = selected?.sections.map((section, index) => {
+    const completed = completedSectionIds.has(section.id);
+    const isActive = active?.setId === selected.id && active?.sectionId === section.id;
+    const actionLabel = isActive ? "继续" : (completed ? "再练一次" : "开始");
+    return `
+      <li class="${completed ? "completed" : ""} ${isActive ? "active" : ""}">
+        <span class="question-number">${majorLabel(index)}</span>
+        <div class="question-copy">
+          <strong>${escapeHtml(section.title)}</strong>
+          <small>${section.items.length} 词${completed ? " · 已完成" : ""}</small>
+        </div>
+        ${completed ? `<span class="question-check" aria-label="已完成">✓</span>` : ""}
+        <button class="question-start" data-start-section="${escapeHtml(section.id)}">${actionLabel}</button>
+      </li>`;
+  }).join("") || "";
 
   const resume = active ? `
     <article class="resume-slip">
       <div>
         <p class="eyebrow">UNFINISHED PAPER</p>
-        <h3>${escapeHtml(active.setTitle)}</h3>
+        <h3>${escapeHtml(active.setTitle)} · ${escapeHtml(active.sectionTitle)}</h3>
         <p>第 ${active.round} 轮 · ${active.currentIds.length} 个待默词 · ${formatDate(active.startedAt)}</p>
       </div>
-      <button class="button button-ink" id="resume-session">继续整张默写 →</button>
+      <button class="button button-ink" id="resume-session">继续这道大题 →</button>
     </article>` : "";
 
   const history = recent.length ? recent.map((entry) => `
-    <li><span>${escapeHtml(entry.setTitle)}</span><strong>${entry.total} 词 / ${entry.rounds} 轮</strong><time>${formatDate(entry.completedAt)}</time></li>`
-  ).join("") : `<li class="empty-list">完成一张专题默写后，记录会出现在这里。</li>`;
+    <li><span>${escapeHtml(entry.setTitle)}${entry.sectionTitle ? ` · ${escapeHtml(entry.sectionTitle)}` : ""}</span><strong>${entry.total} 词 / ${entry.rounds} 轮</strong><time>${formatDate(entry.completedAt)}</time></li>`
+  ).join("") : `<li class="empty-list">完成一道大题后，记录会出现在这里。</li>`;
 
   app.innerHTML = shell(`
     <main>
       <section class="hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">WRITE · CHECK · REPEAT</p>
-          <h1>从第一大题开始，<br><em>按原顺序整张写完。</em></h1>
-          <p class="hero-lead">不抽词、不乱序。每个专题保持原来的章节结构；提交后只重默错词，且错词仍按原位置和大题顺序排列。</p>
+          <h1>一次只练一道，<br><em>写完马上批改。</em></h1>
+          <p class="hero-lead">不抽词、不乱序。每一道大题都可以单独开始、单独提交；提交后只重默这道题里的错词，并始终保持原题顺序。</p>
           <div class="ledger-stats" aria-label="内置专题统计">
             <div><strong>${builtinCount}</strong><span>内置词汇</span></div>
             <div><strong>${sectionCount}</strong><span>完整大题</span></div>
@@ -180,17 +195,16 @@ function renderHome() {
         <section class="setup-sheet" aria-labelledby="setup-title">
           <span class="paperclip" aria-hidden="true"></span>
           <div class="sheet-number">01</div>
-          <p class="eyebrow">FULL DICTATION PAPER</p>
-          <h2 id="setup-title">开始一张完整默写</h2>
+          <p class="eyebrow">QUESTION DIRECTORY</p>
+          <h2 id="setup-title">选择一道大题开始</h2>
           <label class="field-label" for="set-select">选择专题</label>
           <select id="set-select" class="line-select">${setOptions}</select>
           <div class="paper-summary">
             <strong>${selected?.sections.length || 0} 道大题</strong>
-            <span>${selected ? totalItems(selected) : 0} 个词 · 完整原序</span>
+            <span>每题 ${selected ? Math.min(...selected.sections.map((section) => section.items.length)) : 0}–${selected ? Math.max(...selected.sections.map((section) => section.items.length)) : 0} 词 · 固定原序</span>
           </div>
           <ol class="exam-outline" aria-label="试卷大题目录">${outline}</ol>
-          <button class="button button-primary button-wide" id="start-session">按原顺序开始整张默写</button>
-          <p class="setup-hint">忽略大小写与多余空格，但拼写、词序和标点必须正确。</p>
+          <p class="setup-hint">点击任意大题右侧的“开始”。忽略大小写与多余空格，但拼写、词序和标点必须正确。</p>
         </section>
       </section>
 
@@ -223,7 +237,9 @@ function bindHomeEvents() {
     state.selectedSetId = event.target.value;
     renderHome();
   });
-  document.getElementById("start-session")?.addEventListener("click", startSession);
+  document.querySelectorAll("[data-start-section]").forEach((button) => {
+    button.addEventListener("click", () => startSectionSession(button.dataset.startSection));
+  });
   document.getElementById("resume-session")?.addEventListener("click", () => {
     state.view = "session";
     renderSession();
@@ -233,16 +249,27 @@ function bindHomeEvents() {
   document.getElementById("reset-progress")?.addEventListener("click", resetProgress);
 }
 
-function startSession() {
-  if (state.store.activeSession && !window.confirm("开始新的完整默写会替换当前未完成内容。确定继续吗？")) return;
+function startSectionSession(sectionId) {
   const set = currentSet();
   if (!set) return;
-  const items = flattenSet(set);
+  const sectionIndex = set.sections.findIndex((section) => section.id === sectionId);
+  if (sectionIndex < 0) return;
+  const current = state.store.activeSession;
+  if (current?.setId === set.id && current?.sectionId === sectionId && !current.completed) {
+    state.view = "session";
+    renderSession();
+    return;
+  }
+  if (current && !window.confirm("开始另一道大题会替换当前未完成内容。确定继续吗？")) return;
+  const section = set.sections[sectionIndex];
+  const items = sectionItems(set, sectionIndex);
   state.store.activeSession = {
     id: `session-${Date.now()}`,
     setId: set.id,
     setTitle: set.title,
-    sectionTitle: "完整专题",
+    sectionId: section.id,
+    sectionTitle: section.title,
+    sectionIndex,
     items,
     currentIds: items.map((item) => item.id),
     round: 1,
@@ -326,10 +353,10 @@ function renderSession() {
       <div><strong>${correctCount}</strong><span>本轮正确</span></div>
       <div class="wrong-stat"><strong>${wrongCount}</strong><span>需要重默</span></div>
       <button class="button button-primary" id="retry-wrong">只重默这 ${wrongCount} 个错词 →</button>
-    </div>` : `
+  </div>` : `
     <div class="submit-bar">
-      <p>整张写完后统一提交。<kbd>Ctrl</kbd> + <kbd>Enter</kbd> 也可以批改。</p>
-      <button class="button button-primary" id="submit-round">提交整张并批改</button>
+      <p>本大题写完即可提交。<kbd>Ctrl</kbd> + <kbd>Enter</kbd> 也可以批改。</p>
+      <button class="button button-primary" id="submit-round">提交本大题并批改</button>
     </div>`;
 
   app.innerHTML = shell(`
@@ -338,8 +365,8 @@ function renderSession() {
         <button class="back-link" id="pause-session">← 暂停并返回</button>
         <div class="session-title">
           <p class="eyebrow">ROUND ${String(session.round).padStart(2, "0")}</p>
-          <h1>${escapeHtml(session.setTitle)}</h1>
-          <p>${session.round === 1 ? "完整原序试卷" : "错词重默（保持原题顺序）"} · 本轮 ${items.length} 词</p>
+          <h1>${escapeHtml(session.setTitle)} · ${majorLabel(session.sectionIndex)}</h1>
+          <p>${escapeHtml(session.sectionTitle)} · ${session.round === 1 ? "本题原序默写" : "错词重默（保持原题顺序）"} · 本轮 ${items.length} 词</p>
         </div>
         <div class="round-seal"><strong>${session.round}</strong><span>轮</span></div>
       </section>
@@ -419,7 +446,11 @@ function completeSession() {
   session.completedAt = new Date().toISOString();
   const entry = {
     id: session.id,
+    setId: session.setId,
     setTitle: session.setTitle,
+    sectionId: session.sectionId,
+    sectionTitle: session.sectionTitle,
+    sectionIndex: session.sectionIndex,
     total: session.items.length,
     rounds: session.round,
     firstRoundCorrect: session.firstRoundCorrect,
@@ -433,21 +464,24 @@ function completeSession() {
 
 function renderCompletion(session) {
   const firstRate = Math.round((session.firstRoundCorrect / session.items.length) * 100);
+  const set = BUILTIN_SETS.find((candidate) => candidate.id === session.setId);
+  const hasNext = Boolean(set?.sections[session.sectionIndex + 1]);
   app.innerHTML = shell(`
     <main class="completion-main">
       <div class="completion-sheet">
         <div class="completion-check">✓</div>
-        <p class="eyebrow">FULL PAPER MASTERED</p>
-        <h1>整张专题，全部写对了。</h1>
-        <p class="completion-copy">${escapeHtml(session.setTitle)} · 完整原序试卷</p>
+        <p class="eyebrow">QUESTION MASTERED</p>
+        <h1>本大题，全部写对了。</h1>
+        <p class="completion-copy">${escapeHtml(session.setTitle)} · ${majorLabel(session.sectionIndex)} · ${escapeHtml(session.sectionTitle)}</p>
         <div class="completion-stats">
           <div><strong>${session.items.length}</strong><span>掌握词汇</span></div>
           <div><strong>${session.round}</strong><span>完成轮数</span></div>
           <div><strong>${firstRate}%</strong><span>首轮正确率</span></div>
         </div>
         <div class="completion-actions">
-          <button class="button button-primary" id="another-session">返回专题页</button>
-          <button class="button button-secondary" id="repeat-session">重新默写整张</button>
+          <button class="button button-primary" id="another-session">返回大题目录</button>
+          ${hasNext ? `<button class="button button-secondary" id="next-session">下一大题</button>` : ""}
+          <button class="button button-secondary" id="repeat-session">重默本大题</button>
         </div>
         <p class="completion-time">完成于 ${formatDate(session.completedAt)}</p>
       </div>
@@ -455,6 +489,7 @@ function renderCompletion(session) {
   document.getElementById("brand-home")?.addEventListener("click", finishToHome);
   document.getElementById("another-session")?.addEventListener("click", finishToHome);
   document.getElementById("repeat-session")?.addEventListener("click", () => {
+    session.id = `session-${Date.now()}`;
     session.currentIds = session.items.map((item) => item.id);
     session.round = 1;
     session.responses = {};
@@ -466,9 +501,18 @@ function renderCompletion(session) {
     persist();
     renderSession();
   });
+  document.getElementById("next-session")?.addEventListener("click", () => {
+    const nextSection = set?.sections[session.sectionIndex + 1];
+    if (!nextSection) return;
+    state.store.activeSession = null;
+    state.selectedSetId = session.setId;
+    persist();
+    startSectionSession(nextSection.id);
+  });
 }
 
 function finishToHome() {
+  if (state.store.activeSession?.setId) state.selectedSetId = state.store.activeSession.setId;
   state.store.activeSession = null;
   persist();
   renderHome();
@@ -517,7 +561,7 @@ function resetProgress() {
   if (!window.confirm("清空当前默写和全部历史记录吗？此操作不能撤销。")) return;
   state.store = emptyStore();
   localStorage.removeItem(STORAGE_KEY);
-  localStorage.removeItem(LEGACY_STORAGE_KEY);
+  LEGACY_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key));
   state.selectedSetId = BUILTIN_SETS[0]?.id || "";
   renderHome();
   showToast("本机进度已清空");

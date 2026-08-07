@@ -249,10 +249,17 @@ button { color: inherit; }
 .paper-summary strong { color: var(--blue); font: 600 16px var(--kai); }
 .paper-summary span { color: var(--ink-soft); font-size: 11px; }
 .exam-outline { list-style: none; margin: 0; padding: 0; counter-reset: paper-section; }
-.exam-outline li { display: grid; grid-template-columns: 66px 1fr auto; align-items: baseline; gap: 10px; min-height: 29px; padding: 5px 0; border-bottom: 1px dotted rgba(23, 36, 58, 0.22); }
-.exam-outline span { color: var(--red); font: 700 10px var(--kai); }
-.exam-outline strong { overflow: hidden; color: var(--ink); font: 500 13px/1.25 var(--kai); text-overflow: ellipsis; white-space: nowrap; }
-.exam-outline small { color: var(--ink-soft); font-size: 9px; }
+.exam-outline li { display: grid; grid-template-columns: 66px minmax(0, 1fr) 18px 72px; align-items: center; gap: 10px; min-height: 43px; padding: 6px 0; border-bottom: 1px dotted rgba(23, 36, 58, 0.22); transition: background 150ms ease, padding 150ms ease; }
+.exam-outline li:hover, .exam-outline li.active { margin-inline: -8px; padding-inline: 8px; background: rgba(23, 79, 156, 0.055); }
+.exam-outline li.completed { border-bottom-color: rgba(42, 109, 78, 0.32); }
+.exam-outline .question-number { color: var(--red); font: 700 10px var(--kai); }
+.question-copy { min-width: 0; }
+.question-copy strong, .question-copy small { display: block; }
+.question-copy strong { overflow: hidden; color: var(--ink); font: 500 13px/1.25 var(--kai); text-overflow: ellipsis; white-space: nowrap; }
+.question-copy small { margin-top: 3px; color: var(--ink-soft); font-size: 9px; }
+.question-check { color: var(--green); font: 800 13px var(--display); }
+.question-start { min-height: 28px; border: 1px solid rgba(23, 79, 156, 0.42); color: var(--blue); background: rgba(255, 255, 255, 0.42); padding: 0 9px; font: 700 10px var(--kai); cursor: pointer; transition: 150ms ease; }
+.question-start:hover, .question-start:focus-visible { color: white; background: var(--blue); border-color: var(--blue); outline: none; }
 
 .button {
   min-height: 44px;
@@ -440,6 +447,8 @@ kbd { border: 1px solid rgba(23, 36, 58, 0.25); background: rgba(255,255,255,0.5
   .ledger-stats div + div { padding-left: 8px; }
   .ledger-stats strong { font-size: 22px; }
   .setup-sheet { padding: 35px 24px 28px; box-shadow: var(--shadow), 5px 6px 0 var(--paper-deep); }
+  .exam-outline li { grid-template-columns: 62px minmax(0, 1fr) 16px; padding-block: 9px; }
+  .exam-outline .question-start { grid-column: 2 / -1; justify-self: stretch; min-height: 32px; }
   .resume-slip, .data-strip { align-items: stretch; flex-direction: column; }
   .panel-heading { align-items: stretch; flex-direction: column; padding-bottom: 16px; }
   .panel-heading h2 { margin-bottom: 3px; }
