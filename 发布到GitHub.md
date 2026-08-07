@@ -2,7 +2,13 @@
 
 本网页没有后台和构建步骤，适合直接从公开仓库发布。
 
-## 第一次发布（已授权 Codex 代为操作）
+## 当前线上版本
+
+- 仓库：<https://github.com/mianmiancn-bit/word-review-tool>
+- 网页：<https://mianmiancn-bit.github.io/word-review-tool/>
+- 旧版单词复习页仍保留在：<https://mianmiancn-bit.github.io/word-review-tool/blue.html>
+
+## 第一次发布（已于 2026-08-07 完成）
 
 如果远程仓库尚未创建，登录 GitHub，点击右上角 `+`，选择 `New repository`。
 2. 仓库名称可填写 `vocabulary-dictation`，可见性选择 `Public`，不要勾选自动创建 README。

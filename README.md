@@ -2,6 +2,8 @@
 
 一个完全静态、可离线使用的中文到英文整卷默写网页。
 
+在线地址：<https://mianmiancn-bit.github.io/word-review-tool/>
+
 ## 已内置内容
 
 - 地质学词汇：153 条，9 个分类。
