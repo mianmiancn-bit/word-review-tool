@@ -1,6 +1,3 @@
-Exit code: 0
-Wall time: 0.5 seconds
-Output:
 # 词汇默写簿
 
 一个完全静态、可离线使用的中文到英文分题默写网页。

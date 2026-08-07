@@ -1,6 +1,3 @@
-Exit code: 0
-Wall time: 0.5 seconds
-Output:
 # GitHub Pages 发布与维护
 
 本网页没有后台和构建步骤，适合直接从公开仓库发布。

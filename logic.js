@@ -1,6 +1,3 @@
-Exit code: 0
-Wall time: 0.6 seconds
-Output:
 (function exposeDictationLogic(root, factory) {
   const api = factory();
   if (typeof module === "object" && module.exports) module.exports = api;
