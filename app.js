@@ -732,7 +732,7 @@ async function importProgressFile(file) {
     if (!validation.valid) throw new Error(validation.error);
     state.store = {
       schemaVersion: logic.SCHEMA_VERSION,
-      activeSession: validation.legacy ? null : (parsed.activeSession || null),
+      activeSession: parsed.schemaVersion >= 2 ? (parsed.activeSession || null) : null,
       history: parsed.history || [],
       excludedIds: Array.isArray(parsed.excludedIds) ? parsed.excludedIds : []
     };
@@ -765,4 +765,3 @@ progressImport.addEventListener("change", (event) => {
 });
 
 renderHome();
-

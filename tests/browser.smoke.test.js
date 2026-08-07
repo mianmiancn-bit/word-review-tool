@@ -18,6 +18,36 @@ const mime = {
   ".json": "application/json; charset=utf-8"
 };
 
+function createStoredSession(id = "legacy-active-session") {
+  return {
+    id,
+    setId: "geology",
+    setTitle: "地质学词汇",
+    sectionId: "geology-s1",
+    sectionTitle: "一、地质学基础与地球结构",
+    sectionIndex: 0,
+    items: [{
+      id: "geology-s1-001",
+      prompt: "地质学",
+      answer: "geology",
+      ipa: "/dʒiˈɒlədʒi/",
+      order: 1,
+      status: "active",
+      sectionId: "geology-s1",
+      sectionTitle: "一、地质学基础与地球结构",
+      sectionIndex: 0,
+      itemNumber: 1
+    }],
+    currentIds: ["geology-s1-001"],
+    round: 1,
+    responses: { "geology-s1-001": "geo" },
+    results: null,
+    firstRoundCorrect: null,
+    startedAt: "2026-08-01T00:00:00.000Z",
+    completed: false
+  };
+}
+
 function createServer() {
   return http.createServer((request, response) => {
     let pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
@@ -156,24 +186,108 @@ async function main() {
     await page.locator("#progress-import").setInputFiles(damagedBackup);
     await page.locator("#toast").filter({ hasText: "当前默写会话结构损坏" }).waitFor();
 
+    const refreshContext = await browser.newContext();
+    const refreshPage = await refreshContext.newPage();
+    const refreshSession = createStoredSession("refresh-active-session");
+    const refreshHistory = [{
+      id: "refresh-history",
+      setId: "geology",
+      setTitle: "地质学词汇",
+      sectionId: "geology-s1",
+      sectionTitle: "一、地质学基础与地球结构",
+      sectionIndex: 0,
+      total: 1,
+      rounds: 1,
+      firstRoundCorrect: 1,
+      completedAt: "2026-07-31T00:00:00.000Z"
+    }];
+    const refreshStore = {
+      schemaVersion: 4,
+      activeSession: refreshSession,
+      history: refreshHistory,
+      excludedIds: ["geology-s1-002"]
+    };
+    await refreshPage.goto(`http://127.0.0.1:${port}/repo/index.html`, { waitUntil: "networkidle" });
+    await refreshPage.evaluate((store) => {
+      localStorage.setItem("vocab-dictation-notebook-v4", JSON.stringify(store));
+    }, refreshStore);
+    await refreshPage.reload({ waitUntil: "networkidle" });
+    const refreshed = await refreshPage.evaluate(() => JSON.parse(localStorage.getItem("vocab-dictation-notebook-v4")));
+    assert.deepEqual(refreshed.history, refreshHistory);
+    assert.deepEqual(refreshed.activeSession, refreshSession);
+    assert.deepEqual(refreshed.excludedIds, ["geology-s1-002"]);
+    assert.equal(await refreshPage.locator('#set-select option[value="literature"]').count(), 1);
+    const refreshedFirstRow = refreshPage.locator('.exam-outline li:has([data-start-section="geology-s1"])');
+    assert.equal(await refreshedFirstRow.evaluate((element) => element.classList.contains("completed")), true);
+    await refreshPage.getByRole("button", { name: /继续这道大题/ }).click();
+    assert.deepEqual(await refreshPage.locator("[data-answer-id]").evaluateAll((inputs) => inputs.map((input) => input.dataset.answerId)), ["geology-s1-001"]);
+    assert.equal(await refreshPage.locator('[data-answer-id="geology-s1-001"]').inputValue(), "geo");
+    await refreshPage.getByRole("button", { name: /暂停并返回/ }).click();
+    await refreshPage.getByRole("button", { name: "管理简单词" }).click();
+    assert.equal(await refreshPage.locator('[data-manage-word="geology-s1-002"].is-excluded').count(), 1);
+    await refreshContext.close();
+    console.log("step: v4 progress survived expanded vocabulary data refresh");
+
     const migrationContext = await browser.newContext();
     const migrationPage = await migrationContext.newPage();
+    const migratedSession = createStoredSession("migrated-active-session");
     await migrationPage.goto(`http://127.0.0.1:${port}/repo/index.html`, { waitUntil: "networkidle" });
-    await migrationPage.evaluate(() => {
+    await migrationPage.evaluate((activeSession) => {
       localStorage.removeItem("vocab-dictation-notebook-v4");
       localStorage.setItem("vocab-dictation-notebook-v3", JSON.stringify({
         schemaVersion: 3,
-        activeSession: null,
+        activeSession,
         history: [{ id: "legacy-history", setTitle: "旧记录", total: 1, rounds: 1 }]
       }));
-    });
+    }, migratedSession);
     await migrationPage.reload({ waitUntil: "networkidle" });
     const migrated = await migrationPage.evaluate(() => JSON.parse(localStorage.getItem("vocab-dictation-notebook-v4")));
     assert.equal(migrated.schemaVersion, 4);
     assert.equal(migrated.history.length, 1);
     assert.deepEqual(migrated.excludedIds, []);
+    assert.deepEqual(migrated.activeSession, migratedSession);
+    await migrationPage.getByRole("button", { name: /继续这道大题/ }).click();
+    assert.equal(await migrationPage.locator('[data-answer-id="geology-s1-001"]').inputValue(), "geo");
     await migrationContext.close();
-    console.log("step: v3 local storage migrated to v4");
+    console.log("step: v3 local storage migrated to v4 with active session");
+
+    const importContext = await browser.newContext();
+    const importPage = await importContext.newPage();
+    const importedSession = createStoredSession("imported-active-session");
+    const v3Backup = path.join(os.tmpdir(), `v3-vocab-progress-${Date.now()}.json`);
+    fs.writeFileSync(v3Backup, JSON.stringify({
+      schemaVersion: 3,
+      activeSession: importedSession,
+      history: [{ id: "v3-import-history", setTitle: "旧版导入记录", total: 1, rounds: 1 }]
+    }));
+    await importPage.goto(`http://127.0.0.1:${port}/repo/index.html`, { waitUntil: "networkidle" });
+    await importPage.locator("#progress-import").setInputFiles(v3Backup);
+    await importPage.waitForFunction(() => {
+      const store = JSON.parse(localStorage.getItem("vocab-dictation-notebook-v4") || "null");
+      return store?.activeSession?.id === "imported-active-session";
+    });
+    const importedV3 = await importPage.evaluate(() => JSON.parse(localStorage.getItem("vocab-dictation-notebook-v4")));
+    assert.deepEqual(importedV3.activeSession, importedSession);
+    assert.equal(importedV3.history[0].id, "v3-import-history");
+    await importPage.getByRole("button", { name: /继续这道大题/ }).click();
+    assert.equal(await importPage.locator('[data-answer-id="geology-s1-001"]').inputValue(), "geo");
+    await importPage.getByRole("button", { name: /暂停并返回/ }).click();
+
+    const v1Backup = path.join(os.tmpdir(), `v1-vocab-progress-${Date.now()}.json`);
+    fs.writeFileSync(v1Backup, JSON.stringify({
+      schemaVersion: 1,
+      activeSession: createStoredSession("v1-session-must-drop"),
+      history: [{ id: "v1-import-history", setTitle: "更旧版导入记录", total: 1, rounds: 1 }]
+    }));
+    await importPage.locator("#progress-import").setInputFiles(v1Backup);
+    await importPage.waitForFunction(() => {
+      const store = JSON.parse(localStorage.getItem("vocab-dictation-notebook-v4") || "null");
+      return store?.history?.[0]?.id === "v1-import-history";
+    });
+    const importedV1 = await importPage.evaluate(() => JSON.parse(localStorage.getItem("vocab-dictation-notebook-v4")));
+    assert.equal(importedV1.activeSession, null);
+    await importContext.close();
+    console.log("step: v3 import preserved active session and v1 import dropped it");
 
     const mobileContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
     const mobile = await mobileContext.newPage();
@@ -213,4 +327,3 @@ main().then(() => clearTimeout(hardTimeout)).catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
-
