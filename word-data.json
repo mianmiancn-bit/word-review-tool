@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-07T16:48:30.000Z",
+  "updatedAt": "2026-08-08T05:32:42.594Z",
   "wordSets": [
     {
       "id": "geology",
@@ -6405,6 +6405,368 @@
               "wordFamily": "art/artist",
               "sourceRefs": [
                 "manual-expansion-prefix-family"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gardening-nursery",
+      "title": "园艺与育苗词汇",
+      "order": 5,
+      "count": 20,
+      "sections": [
+        {
+          "id": "gardening-nursery-s1",
+          "title": "一、园艺与育苗",
+          "order": 1,
+          "orderingBasis": "高频具体物品与基础动作 → 育苗设施和栽培材料 → 生长结构、繁殖过程与专业学科词；相近难度时保持稳定的场景顺序。",
+          "items": [
+            {
+              "id": "gardening-nursery-s1-001",
+              "prompt": "种子",
+              "answer": "seed",
+              "ipa": "/siːd/",
+              "partOfSpeech": "n.",
+              "order": 1,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ]
+            },
+            {
+              "id": "gardening-nursery-s1-002",
+              "prompt": "花盆；盆",
+              "answer": "pot",
+              "ipa": "/pɒt/",
+              "partOfSpeech": "n.",
+              "order": 2,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ]
+            },
+            {
+              "id": "gardening-nursery-s1-003",
+              "prompt": "土壤",
+              "answer": "soil",
+              "ipa": "/sɔɪl/",
+              "partOfSpeech": "n.",
+              "order": 3,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ]
+            },
+            {
+              "id": "gardening-nursery-s1-004",
+              "prompt": "育苗盘",
+              "answer": "tray",
+              "ipa": "/treɪ/",
+              "partOfSpeech": "n.",
+              "order": 4,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "gardening-nursery-screenshot-2026-08-08"
+              ],
+              "sourceEvidence": {
+                "type": "screenshot-summary",
+                "location": "截图中部项目符号列表第 2 项",
+                "summary": "tray 在该育苗场景中对应“育苗盘”。"
+              },
+              "ambiguityNote": "tray 单独使用也可泛指托盘；本专题按截图中的育苗语境收窄释义。"
+            },
+            {
+              "id": "gardening-nursery-s1-005",
+              "prompt": "幼苗",
+              "answer": "seedling",
+              "ipa": "/ˈsiːdlɪŋ/",
+              "partOfSpeech": "n.",
+              "order": 5,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "gardening-nursery-screenshot-2026-08-08"
+              ],
+              "sourceEvidence": {
+                "type": "screenshot-summary",
+                "location": "截图中部项目符号列表第 1 项",
+                "summary": "截图直接标注 seedling 为“幼苗”。"
+              }
+            },
+            {
+              "id": "gardening-nursery-s1-006",
+              "prompt": "园艺社",
+              "answer": "garden club",
+              "ipa": "/ˈɡɑːdən klʌb/",
+              "partOfSpeech": "n. phr.",
+              "order": 6,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "gardening-nursery-screenshot-2026-08-08"
+              ],
+              "sourceEvidence": {
+                "type": "screenshot-summary",
+                "location": "截图中部项目符号列表第 4 项",
+                "summary": "截图直接标注 garden club 为“园艺社”。"
+              }
+            },
+            {
+              "id": "gardening-nursery-s1-007",
+              "prompt": "浇水壶",
+              "answer": "watering can",
+              "ipa": "/ˈwɔːtərɪŋ kæn/",
+              "partOfSpeech": "n. phr.",
+              "order": 7,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ]
+            },
+            {
+              "id": "gardening-nursery-s1-008",
+              "prompt": "苗圃；育苗场",
+              "answer": "nursery",
+              "ipa": "/ˈnɜːsəri/",
+              "partOfSpeech": "n.",
+              "order": 8,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "gardening-nursery-screenshot-2026-08-08"
+              ],
+              "sourceEvidence": {
+                "type": "screenshot-summary",
+                "location": "截图中部项目符号列表第 3 项",
+                "summary": "截图在育苗场景中标注 nursery 为“苗圃、育苗场”。"
+              },
+              "ambiguityNote": "nursery 也可表示托儿所或幼儿室；本专题只收录园艺语境义。"
+            },
+            {
+              "id": "gardening-nursery-s1-009",
+              "prompt": "堆肥",
+              "answer": "compost",
+              "ipa": "/ˈkɒmpɒst/",
+              "partOfSpeech": "n.",
+              "order": 9,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ]
+            },
+            {
+              "id": "gardening-nursery-s1-010",
+              "prompt": "温室",
+              "answer": "greenhouse",
+              "ipa": "/ˈɡriːnhaʊs/",
+              "partOfSpeech": "n.",
+              "order": 10,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ]
+            },
+            {
+              "id": "gardening-nursery-s1-011",
+              "prompt": "肥料",
+              "answer": "fertilizer",
+              "ipa": "/ˈfɜːtəlaɪzə(r)/",
+              "partOfSpeech": "n.",
+              "order": 11,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ],
+              "variantNote": "英式拼写常作 fertiliser；本候选保留任务指定答案 fertilizer。"
+            },
+            {
+              "id": "gardening-nursery-s1-012",
+              "prompt": "盆栽基质；盆栽培养土",
+              "answer": "potting mix",
+              "ipa": "/ˈpɒtɪŋ mɪks/",
+              "partOfSpeech": "n. phr.",
+              "order": 12,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ],
+              "ambiguityNote": "potting mix 通常指用于盆栽的配制基质，不一定等同于天然土壤。"
+            },
+            {
+              "id": "gardening-nursery-s1-013",
+              "prompt": "排水孔",
+              "answer": "drainage hole",
+              "ipa": "/ˈdreɪnɪdʒ həʊl/",
+              "partOfSpeech": "n. phr.",
+              "order": 13,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ]
+            },
+            {
+              "id": "gardening-nursery-s1-014",
+              "prompt": "根系",
+              "answer": "root system",
+              "ipa": "/ˈruːt ˌsɪstəm/",
+              "partOfSpeech": "n. phr.",
+              "order": 14,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ]
+            },
+            {
+              "id": "gardening-nursery-s1-015",
+              "prompt": "种皮",
+              "answer": "seed coat",
+              "ipa": "/ˈsiːd kəʊt/",
+              "partOfSpeech": "n. phr.",
+              "order": 15,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ]
+            },
+            {
+              "id": "gardening-nursery-s1-016",
+              "prompt": "移栽；移植",
+              "answer": "transplant",
+              "ipa": "/trænsˈplɑːnt/",
+              "partOfSpeech": "v.",
+              "order": 16,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ],
+              "variantNote": "此处按动词收录；名词 transplant 的英式重音通常在首音节。"
+            },
+            {
+              "id": "gardening-nursery-s1-017",
+              "prompt": "修剪",
+              "answer": "pruning",
+              "ipa": "/ˈpruːnɪŋ/",
+              "partOfSpeech": "n.",
+              "order": 17,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ]
+            },
+            {
+              "id": "gardening-nursery-s1-018",
+              "prompt": "发芽；萌发",
+              "answer": "germination",
+              "ipa": "/ˌdʒɜːmɪˈneɪʃən/",
+              "partOfSpeech": "n.",
+              "order": 18,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ]
+            },
+            {
+              "id": "gardening-nursery-s1-019",
+              "prompt": "繁殖；繁育",
+              "answer": "propagation",
+              "ipa": "/ˌprɒpəˈɡeɪʃən/",
+              "partOfSpeech": "n.",
+              "order": 19,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
+              ],
+              "ambiguityNote": "本专题取植物繁殖义；该词在其他语境也可指传播。"
+            },
+            {
+              "id": "gardening-nursery-s1-020",
+              "prompt": "园艺学；园艺",
+              "answer": "horticulture",
+              "ipa": "/ˈhɔːtɪkʌltʃə(r)/",
+              "partOfSpeech": "n.",
+              "order": 20,
+              "status": "active",
+              "difficulty": {
+                "level": null,
+                "confidence": "unrated"
+              },
+              "sourceRefs": [
+                "manual-expansion-gardening-nursery"
               ]
             }
           ]

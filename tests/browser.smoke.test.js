@@ -88,16 +88,17 @@ async function main() {
     console.log("step: per-question directory loaded");
     await page.screenshot({ path: path.join(artifacts, "01-首页.png"), fullPage: true });
     const homeText = await page.locator("body").innerText();
-    assert.match(homeText, /412/);
+    assert.match(homeText, /432/);
     assert.match(homeText, /一次只练一道/);
     assert.match(homeText, /不抽词、不乱序/);
     assert.doesNotMatch(homeText, /我的词表|添加词表|本组数量|按原顺序开始整张/);
     assert.equal(await page.locator("[data-start-section]").count(), 9);
     assert.equal(externalRequests.length, 0, "页面不应请求外部资源");
 
-    assert.equal(await page.locator("#set-select option").count(), 4);
+    assert.equal(await page.locator("#set-select option").count(), 5);
     assert.equal(await page.locator('#set-select option[value="rail-industry-logistics"]').count(), 1);
     assert.equal(await page.locator('#set-select option[value="prefix-word-families"]').count(), 1);
+    assert.equal(await page.locator('#set-select option[value="gardening-nursery"]').count(), 1);
     await page.locator("#set-select").selectOption("rail-industry-logistics");
     assert.equal(await page.locator("[data-start-section]").count(), 4);
     const newTopicOrder = await page.evaluate(() => ({
@@ -107,7 +108,56 @@ async function main() {
     assert.deepEqual(newTopicOrder.actual, newTopicOrder.expected, "新增专题的大题必须保持正式词库顺序");
     await page.locator("#set-select").selectOption("geology");
     assert.equal(await page.locator("[data-start-section]").count(), 9);
-    console.log("step: four approved topics and new-topic fixed order verified");
+    console.log("step: five approved topics and fixed topic order verified");
+
+    await page.locator("#set-select").selectOption("gardening-nursery");
+    assert.equal(await page.locator("[data-start-section]").count(), 1);
+    const gardeningSectionId = await page.locator("[data-start-section]").getAttribute("data-start-section");
+    const gardeningDirectoryOrder = await page.evaluate(() => ({
+      expected: window.BUILTIN_WORD_SETS.find((set) => set.id === "gardening-nursery").sections.map((section) => section.id),
+      actual: [...document.querySelectorAll("[data-start-section]")].map((button) => button.dataset.startSection)
+    }));
+    assert.deepEqual(gardeningDirectoryOrder.actual, gardeningDirectoryOrder.expected);
+    await page.locator(`[data-start-section="${gardeningSectionId}"]`).click();
+    assert.equal(await page.locator("[data-answer-id]").count(), 20);
+    const gardeningOrder = await page.evaluate(() => ({
+      expected: window.BUILTIN_WORD_SETS.find((set) => set.id === "gardening-nursery").sections[0].items.map((item) => item.id),
+      actual: [...document.querySelectorAll("[data-answer-id]")].map((input) => input.dataset.answerId)
+    }));
+    assert.deepEqual(gardeningOrder.actual, gardeningOrder.expected, "gardening section must keep approved fixed order");
+    const gardeningWrongIds = gardeningOrder.expected.filter((_, index) => [2, 11, 19].includes(index));
+    await page.evaluate((wrongIds) => {
+      const items = window.BUILTIN_WORD_SETS.find((set) => set.id === "gardening-nursery").sections[0].items;
+      const answers = new Map(items.map((item) => [item.id, item.answer]));
+      [...document.querySelectorAll("[data-answer-id]")].forEach((input) => {
+        input.value = wrongIds.includes(input.dataset.answerId) ? "definitely wrong" : answers.get(input.dataset.answerId);
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+    }, gardeningWrongIds);
+    await page.locator("#submit-round").click();
+    assert.deepEqual(
+      await page.locator(".word-row.wrong [data-answer-id]").evaluateAll((inputs) => inputs.map((input) => input.dataset.answerId)),
+      gardeningWrongIds,
+      "gardening wrong words must retain their approved order"
+    );
+    await page.locator("#retry-wrong").click();
+    assert.deepEqual(
+      await page.locator("[data-answer-id]").evaluateAll((inputs) => inputs.map((input) => input.dataset.answerId)),
+      gardeningWrongIds,
+      "gardening wrong-only loop must retain original order"
+    );
+    await page.evaluate(() => {
+      const items = window.BUILTIN_WORD_SETS.find((set) => set.id === "gardening-nursery").sections[0].items;
+      const answers = new Map(items.map((item) => [item.id, item.answer]));
+      [...document.querySelectorAll("[data-answer-id]")].forEach((input) => {
+        input.value = answers.get(input.dataset.answerId);
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+    });
+    await page.locator("#submit-round").click();
+    await page.locator("#another-session").click();
+    await page.locator("#set-select").selectOption("geology");
+    console.log("step: gardening 20-word fixed order and ordered wrong-only loop verified");
 
     await page.getByRole("button", { name: "管理简单词" }).click();
     await page.getByRole("heading", { name: "简单词管理" }).waitFor();
@@ -231,6 +281,7 @@ async function main() {
     assert.deepEqual(refreshed.activeSession, refreshSession);
     assert.deepEqual(refreshed.excludedIds, ["geology-s1-002"]);
     assert.equal(await refreshPage.locator('#set-select option[value="literature"]').count(), 1);
+    assert.equal(await refreshPage.locator('#set-select option[value="gardening-nursery"]').count(), 1);
     const refreshedFirstRow = refreshPage.locator('.exam-outline li:has([data-start-section="geology-s1"])');
     assert.equal(await refreshedFirstRow.evaluate((element) => element.classList.contains("completed")), true);
     await refreshPage.getByRole("button", { name: /继续这道大题/ }).click();
